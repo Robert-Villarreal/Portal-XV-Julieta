@@ -365,6 +365,78 @@ body::after{
 
     margin-top:15px;
 }
+
+  .momentos{
+
+    padding:100px 20px;
+
+    text-align:center;
+
+}
+
+.momentos h2{
+
+    font-family:'Playfair Display', serif;
+
+    font-size:48px;
+
+    margin-bottom:50px;
+
+}
+
+.momentos-grid{
+
+    max-width:1100px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+}
+
+.momento{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:28px;
+
+    border:1px solid rgba(191,197,204,.20);
+
+    box-shadow:
+    0 12px 30px rgba(0,0,0,.05);
+
+}
+
+.momento h3{
+
+    font-size:24px;
+
+    margin-bottom:15px;
+
+}
+
+.momento p{
+
+    font-size:18px;
+
+    font-weight:600;
+
+    margin-bottom:10px;
+
+}
+
+.momento span{
+
+    color:#777;
+
+}
   
 </style>
 
@@ -451,7 +523,40 @@ body::after{
 <section id="universo">
 
 </section>
+<section class="momentos">
 
+    <h2>Momentos Definidos</h2>
+
+    <div class="momentos-grid">
+
+        <div class="momento">
+            <h3>Salón</h3>
+            <p>Sanfiz Eventos</p>
+            <span>Ramos Mejía</span>
+        </div>
+
+        <div class="momento">
+            <h3>Catering</h3>
+            <p>Gonzalo Lanús</p>
+            <span>Confirmado</span>
+        </div>
+
+        <div class="momento">
+            <h3>Fecha</h3>
+            <p>27 de diciembre de 2026</p>
+            <span>Reservada</span>
+        </div>
+
+        <div class="momento">
+            <h3>Horario</h3>
+            <p>13:00 a 21:00 hs</p>
+            <span>Jornada completa</span>
+        </div>
+
+    </div>
+
+</section>
+  
 <script>
 
 function actualizarContador() {
