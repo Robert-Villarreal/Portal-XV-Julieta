@@ -349,7 +349,18 @@ color:#4A4A4A;
     transition:.35s;
 
 }
-.card:hover{
+
+  .card-link{
+
+    text-decoration:none;
+
+    color:inherit;
+
+    display:block;
+
+}
+  
+  .card:hover{
 
     transform:translateY(-8px);
 
@@ -590,13 +601,15 @@ color:#4A4A4A;
 
     <div class="cards">
 
-        <div class="card">
-          
-          #mi-look  
-          
-          <h3>Mi Look</h3>
-<p>Vestido · Maquillaje · Peinado</p>
-        </div>
+        <a href="#mi-look" class="card">
+
+        <h3>Mi Look</h3>
+
+        <p>Vestido · Maquillaje · Peinado</p>
+
+    </div>
+
+</a>
 
         <div class="card">
             <h3>Mi Fiesta</h3>
@@ -735,4 +748,8 @@ actualizarContador();
 </section>
 
 </body>
-</html>
+html{
+
+    scroll-behavior:smooth;
+
+}
