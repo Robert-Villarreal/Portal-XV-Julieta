@@ -437,6 +437,96 @@ body::after{
     color:#777;
 
 }
+
+.look{
+
+    padding:120px 20px;
+
+    text-align:center;
+
+}
+
+.look h2{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:56px;
+
+    margin-bottom:15px;
+
+}
+
+.look-subtitulo{
+
+    color:#777;
+
+    margin-bottom:50px;
+
+    font-size:20px;
+
+}
+
+.look-grid{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
+    gap:25px;
+
+}
+
+.look-card{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:32px;
+
+    border:1px solid rgba(191,197,204,.20);
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.05);
+
+    transition:.35s;
+
+}
+
+.look-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.look-card h3{
+
+    margin-bottom:20px;
+
+    font-size:26px;
+
+}
+
+.estado{
+
+    display:inline-block;
+
+    padding:8px 20px;
+
+    border-radius:30px;
+
+    background:#F1F3F5;
+
+    color:#666;
+
+    font-size:14px;
+
+}
   
 </style>
 
@@ -551,6 +641,50 @@ body::after{
             <h3>Horario</h3>
             <p>13:00 a 21:00 hs</p>
             <span>Jornada completa</span>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="look">
+
+    <h2>Mi Look</h2>
+
+    <p class="look-subtitulo">
+        Cada detalle comienza a tomar forma.
+    </p>
+
+    <div class="look-grid">
+
+        <div class="look-card">
+            <h3>Vestido Principal</h3>
+            <span class="estado">En búsqueda</span>
+        </div>
+
+        <div class="look-card">
+            <h3>Peinado</h3>
+            <span class="estado">Pendiente</span>
+        </div>
+
+        <div class="look-card">
+            <h3>Maquillaje</h3>
+            <span class="estado">Pendiente</span>
+        </div>
+
+        <div class="look-card">
+            <h3>Zapatos</h3>
+            <span class="estado">Pendiente</span>
+        </div>
+
+        <div class="look-card">
+            <h3>Accesorios</h3>
+            <span class="estado">Pendiente</span>
+        </div>
+
+        <div class="look-card">
+            <h3>Sesión de Fotos</h3>
+            <span class="estado">Por definir</span>
         </div>
 
     </div>
