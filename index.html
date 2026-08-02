@@ -49,6 +49,10 @@ body{
     display:flex;
 
     justify-content:center;
+  
+  position:relative;
+
+  overflow:hidden;
 
     align-items:center;
 
@@ -57,7 +61,36 @@ body{
     padding:20px;
 }
 
-.seal{
+.hero::before{
+
+    content:"JV";
+
+    position:absolute;
+
+    top:50%;
+
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    font-family:'Playfair Display',serif;
+
+    font-size:380px;
+
+    color:rgba(212,175,55,.04);
+
+    pointer-events:none;
+
+    z-index:0;
+}
+  
+  .hero > div{
+
+    position:relative;
+
+    z-index:2;
+}
+  .seal{
 
   width:150px;
   height:150px;
@@ -234,7 +267,7 @@ body::after{
 
     text-align:center;
 
-    padding:120px 20px;
+    padding:80px 20px;
 }
 
 .contador h2{
@@ -296,14 +329,17 @@ body::after{
 
     background:white;
 
-    padding:40px 20px;
+    padding:50px 30px;
 
-    border-radius:24px;
+    border-radius:30px;
 
     box-shadow:
-    0 10px 30px rgba(0,0,0,.06);
+    0 12px 30px rgba(0,0,0,.06);
 
-    transition:.3s;
+    transition:.35s;
+
+    border:1px solid rgba(0,0,0,.04);
+
 }
 
 .card:hover{
@@ -373,23 +409,23 @@ body::after{
     <div class="cards">
 
         <div class="card">
-            👗
             <h3>Mi Look</h3>
+<p>Vestido · Maquillaje · Peinado</p>
         </div>
 
         <div class="card">
-            🎉
             <h3>Mi Fiesta</h3>
+<p>Salón · Catering · Ambientación</p>
         </div>
 
         <div class="card">
-            📸
             <h3>Inspiración</h3>
+<p>Ideas · Fotos · Referencias</p>
         </div>
 
         <div class="card">
-            📅
             <h3>Agenda</h3>
+<p>Cronograma · Hitos · Eventos</p>
         </div>
 
     </div>
