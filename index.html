@@ -27,33 +27,31 @@
 
 <script>
 
-const fechaEvento =
-new Date("2026-12-27T13:00:00");
+function actualizarContador() {
 
-const dias =
-document.getElementById("dias");
-
-function actualizar(){
-
+    const fechaEvento = new Date("2026-12-27T13:00:00");
     const hoy = new Date();
 
-    const diferencia =
-    fechaEvento - hoy;
+    const diferencia = fechaEvento.getTime() - hoy.getTime();
 
-    const totalDias =
-    Math.ceil(
-    diferencia /
-    (1000*60*60*24)
+    const totalDias = Math.ceil(
+        diferencia / (1000 * 60 * 60 * 24)
     );
 
-    dias.innerHTML = totalDias;
+    const elementoDias =
+        document.getElementById("dias");
+
+    if (elementoDias) {
+
+        elementoDias.innerHTML = totalDias;
+
+    }
 
 }
 
-actualizar();
+actualizarContador();
 
-</script>
-  
+</script>  
 body{
 
     font-family:'Montserrat',sans-serif;
