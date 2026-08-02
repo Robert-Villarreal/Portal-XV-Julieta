@@ -70,17 +70,20 @@ linear-gradient(
 
     position:absolute;
 
-    right:35px;
-    bottom:25px;
+    right:30px;
+    bottom:20px;
 
     font-family:'Playfair Display',serif;
 
-    font-size:90px;
+    font-size:110px;
 
-    color:rgba(191,197,204,.10);
+    font-weight:700;
+
+    color:rgba(191,197,204,.25);
 
     pointer-events:none;
 
+    z-index:1;
 }
   
   .hero > div{
@@ -319,6 +322,9 @@ body::after{
     repeat(auto-fit,minmax(180px,1fr));
 
     gap:20px;
+  text-decoration:none;
+ 
+color:#4A4A4A;
 
     max-width:1000px;
 
@@ -585,7 +591,10 @@ body::after{
     <div class="cards">
 
         <div class="card">
-            <h3>Mi Look</h3>
+          
+          #mi-look  
+          
+          <h3>Mi Look</h3>
 <p>Vestido · Maquillaje · Peinado</p>
         </div>
 
@@ -647,7 +656,7 @@ body::after{
 
 </section>
 
-<section class="look">
+<section id="mi-look" class="look">
 
     <h2>Mi Look</h2>
 
