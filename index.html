@@ -25,9 +25,50 @@
   box-sizing:border-box;
 }
 
+<script>
+
+const fechaEvento =
+new Date("2026-12-27T13:00:00");
+
+const dias =
+document.getElementById("dias");
+
+function actualizar(){
+
+    const hoy = new Date();
+
+    const diferencia =
+    fechaEvento - hoy;
+
+    const totalDias =
+    Math.ceil(
+    diferencia /
+    (1000*60*60*24)
+    );
+
+    dias.innerHTML = totalDias;
+
+}
+
+actualizar();
+
+</script>
+  
 body{
-  font-family:Montserrat,sans-serif;
-  background:var(--marfil);
+
+    font-family:'Montserrat',sans-serif;
+
+    background:
+    radial-gradient(
+        circle at top,
+        #ffffff,
+        #faf9f7 60%
+    );
+
+    color:#4A4A4A;
+
+    overflow-x:hidden;
+
 }
 
 .hero{
@@ -176,6 +217,133 @@ color:#666;
     font-size:18px;
 
 }
+  body::before{
+
+    content:"";
+
+    position:fixed;
+
+    top:-150px;
+    left:-150px;
+
+    width:400px;
+    height:400px;
+
+    background:
+    radial-gradient(
+        rgba(212,175,55,.08),
+        transparent 70%
+    );
+
+    pointer-events:none;
+}
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    bottom:-150px;
+    right:-150px;
+
+    width:400px;
+    height:400px;
+
+    background:
+    radial-gradient(
+        rgba(122,21,32,.05),
+        transparent 70%
+    );
+
+    pointer-events:none;
+}
+
+  .contador{
+
+    text-align:center;
+
+    padding:120px 20px;
+}
+
+.contador h2{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:40px;
+
+    margin-bottom:20px;
+}
+
+#dias{
+
+    font-size:110px;
+
+    font-weight:700;
+
+    color:#7A1520;
+}
+
+.contador p{
+
+    font-size:24px;
+
+    color:#666;
+}
+
+  .universo{
+
+    padding:100px 20px;
+
+    text-align:center;
+}
+
+.universo h2{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:42px;
+
+    margin-bottom:50px;
+}
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+    gap:20px;
+
+    max-width:1000px;
+
+    margin:auto;
+}
+
+.card{
+
+    background:white;
+
+    padding:40px 20px;
+
+    border-radius:24px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.06);
+
+    transition:.3s;
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+}
+
+.card h3{
+
+    margin-top:15px;
+}
   
 </style>
 
@@ -217,6 +385,46 @@ color:#666;
 
 <section id="universo">
 
+    <div class="contador">
+
+        <h2>Faltan</h2>
+
+        <div id="dias">0</div>
+
+        <p>días para mis XV</p>
+
+    </div>
+
+<section class="universo">
+
+    <h2>Mi Universo XV</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            👗
+            <h3>Mi Look</h3>
+        </div>
+
+        <div class="card">
+            🎉
+            <h3>Mi Fiesta</h3>
+        </div>
+
+        <div class="card">
+            📸
+            <h3>Inspiración</h3>
+        </div>
+
+        <div class="card">
+            📅
+            <h3>Agenda</h3>
+        </div>
+
+    </div>
+
+</section>  
+  
 </section>
 
 </body>
