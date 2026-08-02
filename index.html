@@ -15,7 +15,7 @@
   --marfil:#FAF9F7;
   --lavanda:#B8A4E3;
   --rosa:#E8C7D8;
-  --dorado:#D4AF37;
+  --dorado:#BFC5CC;
   --grafito:#4A4A4A;
 }
 
@@ -30,11 +30,12 @@ body{
     font-family:'Montserrat',sans-serif;
 
     background:
-    radial-gradient(
-        circle at top,
-        #ffffff,
-        #faf9f7 60%
-    );
+linear-gradient(
+180deg,
+#FAF9F7 0%,
+#FFF8FB 35%,
+#F9FCFF 100%
+);;
 
     color:#4A4A4A;
 
@@ -47,6 +48,8 @@ body{
     min-height:100vh;
 
     display:flex;
+
+  position:relative;
 
     justify-content:center;
   
@@ -67,21 +70,17 @@ body{
 
     position:absolute;
 
-    top:50%;
-
-    left:50%;
-
-    transform:translate(-50%,-50%);
+    right:35px;
+    bottom:25px;
 
     font-family:'Playfair Display',serif;
 
-    font-size:380px;
+    font-size:90px;
 
-    color:rgba(212,175,55,.04);
+    color:rgba(191,197,204,.10);
 
     pointer-events:none;
 
-    z-index:0;
 }
   
   .hero > div{
@@ -114,14 +113,14 @@ body{
 .jv{
 
   font-size:50px;
-  color:#D4AF37;
+  color:#BFC5CC;
 
   font-family:Playfair Display;
 }
 
 .xv{
 
-  color:#D4AF37;
+  color:#BFC5CC;
   font-size:18px;
 }
 
@@ -171,11 +170,9 @@ color:#666;
 
     height:2px;
 
-    background:#D4AF37;
+    background:#BFC5CC;
 
     margin:30px auto;
-
-    border-radius:10px;
 
 }
   
@@ -194,22 +191,25 @@ color:#666;
 
     margin-top:30px;
 
-    padding:16px 40px;
+    padding:18px 50px;
 
-    background:#D4AF37;
+    background:#BFC5CC;
 
     color:white;
 
     text-decoration:none;
 
-    border-radius:40px;
+    border-radius:50px;
 
     font-weight:600;
-}
 
+    letter-spacing:1px;
+
+}
 .boton:hover{
 
-    background:#7A1520;
+    background:#A9AFB6;
+
 }
 
 .mensaje-home{
@@ -267,7 +267,7 @@ body::after{
 
     text-align:center;
 
-    padding:80px 20px;
+    padding:60px 20px;
 }
 
 .contador h2{
@@ -331,20 +331,20 @@ body::after{
 
     padding:50px 30px;
 
-    border-radius:30px;
+    border-radius:32px;
+
+    border:1px solid rgba(191,197,204,.20);
 
     box-shadow:
-    0 12px 30px rgba(0,0,0,.06);
+    0 12px 30px rgba(0,0,0,.05);
 
     transition:.35s;
 
-    border:1px solid rgba(0,0,0,.04);
-
 }
-
 .card:hover{
 
-    transform:translateY(-5px);
+    transform:translateY(-6px);
+
 }
 
 .card h3{
