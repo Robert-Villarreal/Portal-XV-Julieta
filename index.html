@@ -37,9 +37,9 @@ body{
 linear-gradient(
 180deg,
 #FAF9F7 0%,
-#F5DCE8 35%,
+#F5DCE8 40%,
 #DDECFB 100%
-);;
+);
 
     color:#4A4A4A;
 
@@ -585,6 +585,111 @@ color:#4A4A4A;
     font-size:14px;
 
 }
+
+  <section class="fiesta">
+
+    <h2>Mi Fiesta</h2>
+
+    <p class="fiesta-subtitulo">
+        Los momentos que darán vida a una celebración inolvidable.
+    </p>
+
+    <div class="fiesta-grid">
+
+        <div class="fiesta-card">
+            <h3>Salón</h3>
+            <span class="estado">Confirmado</span>
+        </div>
+
+        <div class="fiesta-card">
+            <h3>Catering</h3>
+            <span class="estado">Confirmado</span>
+        </div>
+
+        <div class="fiesta-card">
+            <h3>Ambientación</h3>
+            <span class="estado">En análisis</span>
+        </div>
+
+        <div class="fiesta-card">
+            <h3>Música</h3>
+            <span class="estado">Pendiente</span>
+        </div>
+
+        <div class="fiesta-card">
+            <h3>Fotografía</h3>
+            <span class="estado">Pendiente</span>
+        </div>
+
+        <div class="fiesta-card">
+            <h3>Video</h3>
+            <span class="estado">Pendiente</span>
+        </div>
+
+.fiesta{
+
+    max-width:1200px;
+
+    margin:0 auto;
+
+    padding:120px 20px;
+
+    text-align:center;
+
+}
+
+.fiesta h2{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:56px;
+
+    margin-bottom:15px;
+
+}
+
+.fiesta-subtitulo{
+
+    color:#777;
+
+    margin-bottom:50px;
+
+    font-size:20px;
+
+}
+
+.fiesta-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(240px,1fr));
+
+    gap:30px;
+
+}
+
+.fiesta-card{
+
+    background:rgba(255,255,255,.85);
+
+    backdrop-filter:blur(10px);
+
+    padding:40px;
+
+    border-radius:32px;
+
+    border:1px solid rgba(191,197,204,.20);
+
+    box-shadow:
+    0 12px 30px rgba(0,0,0,.05);
+
+}
+``
+  
+    </div>
+
+</section>
   
 </style>
 
