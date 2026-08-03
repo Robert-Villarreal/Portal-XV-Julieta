@@ -320,16 +320,25 @@ body::after{
 
 .cards{
 
-    max-width:1200px;
+    max-width:1100px;
 
     margin:0 auto;
 
     display:grid;
 
     grid-template-columns:
-    repeat(auto-fit,minmax(260px,1fr));
+    repeat(2,1fr);
 
     gap:25px;
+
+}
+
+  @media(max-width:768px){
+
+    .cards{
+
+        grid-template-columns:1fr;
+    }
 
 }
 
@@ -351,6 +360,14 @@ body::after{
     text-decoration:none;
 
     color:#4A4A4A;
+  
+  min-height:220px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
 
 }
 
