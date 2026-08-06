@@ -142,6 +142,62 @@ body{
 
 }
 
+    .ideas-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:10px;
+
+    margin-bottom:15px;
+
+}
+
+.foto-box{
+
+    height:70px;
+
+    background:#F8F8F8;
+
+    border:2px dashed #DCDCDC;
+
+    border-radius:14px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:13px;
+
+    color:#999;
+
+}
+
+.notas{
+
+    width:100%;
+
+    min-height:100px;
+
+    padding:12px;
+
+    border:1px solid #DDD;
+
+    border-radius:14px;
+
+    box-sizing:border-box;
+
+    resize:vertical;
+
+    font-size:14px;
+
+    font-family:Arial,sans-serif;
+
+}
+    
 </style>
 
 </head>
@@ -172,13 +228,29 @@ body{
 
         <div class="ficha-card">
 
-            <h2>Ideas / Fotos / Notas</h2>
+    <h2>Ideas / Fotos / Notas</h2>
 
-            <p>
-                Referencias, fotos e ideas del vestido.
-            </p>
+    <div class="ideas-grid">
 
+        <div class="foto-box">
+            Foto 1
         </div>
+
+        <div class="foto-box">
+            Foto 2
+        </div>
+
+        <div class="foto-box">
+            Foto 3
+        </div>
+
+    </div>
+
+    <textarea
+        class="notas"
+        placeholder="Escribí ideas, comentarios, referencias o detalles sobre el vestido..."></textarea>
+
+</div>
 
         <div class="ficha-card">
 
