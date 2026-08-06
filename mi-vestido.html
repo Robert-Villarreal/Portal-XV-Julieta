@@ -14,7 +14,7 @@ body{
 
     margin:0;
 
-    font-family:'Montserrat',sans-serif;
+    font-family:Arial,sans-serif;
 
     background:
     linear-gradient(
@@ -30,11 +30,11 @@ body{
 
 .vestido{
 
-    max-width:1200px;
+    max-width:1400px;
 
     margin:auto;
 
-    padding:80px 20px;
+    padding:60px 20px;
 
 }
 
@@ -42,9 +42,56 @@ body{
 
     text-align:center;
 
-    font-size:56px;
+    font-size:72px;
 
-    margin-bottom:40px;
+    margin-bottom:20px;
+
+}
+
+.estado-header{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+.estado{
+
+    display:inline-block;
+
+    padding:12px 28px;
+
+    border-radius:30px;
+
+    background:#FFF4D6;
+
+    color:#A66A00;
+
+    font-size:20px;
+
+    margin-bottom:15px;
+
+}
+
+.estado-header p{
+
+    margin:8px 0;
+
+    color:#666;
+
+    font-size:18px;
+
+}
+
+.ficha-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:25px;
 
 }
 
@@ -52,13 +99,13 @@ body{
 
     background:white;
 
-    padding:35px;
+    padding:30px;
 
     border-radius:28px;
 
     min-height:220px;
 
-    border:1px solid rgba(191,197,204,.25);
+    border:1px solid rgba(191,197,204,.20);
 
     box-shadow:
     0 8px 25px rgba(0,0,0,.05);
@@ -69,49 +116,17 @@ body{
 
     margin-top:0;
 
-}
-
-.estado{
-
-    display:inline-block;
-
-    padding:10px 20px;
-
-    border-radius:30px;
-
-    background:#FFF4D6;
-
-    color:#A66A00;
+    font-size:30px;
 
 }
 
-.estado-header{
-
-    text-align:center;
-
-    margin-bottom:50px;
-
-}
-
-.estado-header p{
-
-    margin:10px 0;
+.ficha-card p{
 
     color:#666;
 
 }
 
-    .ficha-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:25px;
-
-}
-
-    @media(max-width:768px){
+@media(max-width:900px){
 
     .ficha-grid{
 
@@ -119,8 +134,14 @@ body{
 
     }
 
+    .vestido h1{
+
+        font-size:52px;
+
+    }
+
 }
-    
+
 </style>
 
 </head>
@@ -133,78 +154,81 @@ body{
 
     <div class="estado-header">
 
-    <span class="estado">
-        En búsqueda
-    </span>
-
-    <p>
-        Proveedor contratado: Sin definir
-    </p>
-
-    <p>
-        Última actualización: 06/08/2026
-    </p>
-
-</div>
-
-    <div class="ficha-card">
-
-        <h2>Ideas / Fotos / Notas</h2>
+        <span class="estado">
+            En búsqueda
+        </span>
 
         <p>
-            Próximamente se podrán cargar imágenes,
-            referencias y observaciones.
+            Proveedor contratado: Sin definir
+        </p>
+
+        <p>
+            Última actualización: 06/08/2026
         </p>
 
     </div>
 
-    <div class="ficha-card">
+    <div class="ficha-grid">
 
-        <h2>Reuniones y Seguimiento</h2>
+        <div class="ficha-card">
 
-        <p>
-            Sin reuniones registradas.
-        </p>
+            <h2>Ideas / Fotos / Notas</h2>
 
-    </div>
+            <p>
+                Referencias, fotos e ideas del vestido.
+            </p>
 
-    <div class="ficha-card">
+        </div>
 
-        <h2>Cotizaciones</h2>
+        <div class="ficha-card">
 
-        <p>
-            Sin cotizaciones registradas.
-        </p>
+            <h2>Reuniones</h2>
 
-    </div>
+            <p>
+                Seguimiento de pruebas y citas.
+            </p>
 
-    <div class="ficha-card">
+        </div>
 
-        <h2>Contratación</h2>
+        <div class="ficha-card">
 
-        <p>
-            Sin proveedor contratado.
-        </p>
+            <h2>Cotizaciones</h2>
 
-    </div>
+            <p>
+                Presupuestos recibidos.
+            </p>
 
-    <div class="ficha-card">
+        </div>
 
-        <h2>Movimientos</h2>
+        <div class="ficha-card">
 
-        <p>
-            Sin movimientos registrados.
-        </p>
+            <h2>Contratación</h2>
 
-    </div>
+            <p>
+                Proveedor seleccionado.
+            </p>
 
-    <div class="ficha-card">
+        </div>
 
-        <h2>Historial</h2>
+        <div class="ficha-card">
 
-        <p>
-            Sin registros históricos.
-        </p>
+            <h2>Movimientos</h2>
+
+            <p>
+                Pagos y cuenta corriente.
+            </p>
+
+        </div>
+
+        <div class="ficha-card">
+
+            <h2>Historial</h2>
+
+            <p>
+                Registro completo de cambios.
+            </p>
+
+        </div>
 
     </div>
 
