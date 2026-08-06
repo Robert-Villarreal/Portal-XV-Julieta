@@ -56,7 +56,7 @@ body{
 
     border-radius:28px;
 
-    margin-bottom:25px;
+    min-height:220px;
 
     border:1px solid rgba(191,197,204,.25);
 
@@ -85,6 +85,42 @@ body{
 
 }
 
+.estado-header{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+}
+
+.estado-header p{
+
+    margin:10px 0;
+
+    color:#666;
+
+}
+
+    .ficha-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+    @media(max-width:768px){
+
+    .ficha-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+    
 </style>
 
 </head>
@@ -95,20 +131,21 @@ body{
 
     <h1>Mi Vestido</h1>
 
-    <div class="ficha-card">
+    <div class="estado-header">
 
-        <h2>Estado</h2>
+    <span class="estado">
+        En búsqueda
+    </span>
 
-        <span class="estado">
-            En búsqueda
-        </span>
+    <p>
+        Proveedor contratado: Sin definir
+    </p>
 
-        <p>
-            Proveedor contratado:
-            Sin definir
-        </p>
+    <p>
+        Última actualización: 06/08/2026
+    </p>
 
-    </div>
+</div>
 
     <div class="ficha-card">
 
