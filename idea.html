@@ -4,8 +4,9 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Idea</title>
+<title>Idea | XV Julieta</title>
 
 <style>
 
@@ -15,15 +16,142 @@ body{
 
     font-family:Arial,sans-serif;
 
-    background:#F5DCE8;
+    background:
+    linear-gradient(
+        180deg,
+        #FAF9F7 0%,
+        #F5DCE8 45%,
+        #DDECFB 100%
+    );
+
+    color:#4A4A4A;
 
 }
 
-h1{
+.idea-page{
 
-    text-align:center;
+    max-width:900px;
 
-    margin-top:100px;
+    margin:auto;
+
+    padding:60px 20px;
+
+}
+
+.volver{
+
+    display:inline-block;
+
+    margin-bottom:25px;
+
+    text-decoration:none;
+
+    color:#666;
+
+    font-size:15px;
+
+}
+
+.idea-card{
+
+    background:white;
+
+    border-radius:30px;
+
+    padding:25px;
+
+    border:1px solid rgba(191,197,204,.20);
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.05);
+
+}
+
+.idea-img{
+
+    width:100%;
+
+    height:450px;
+
+    background:#F3F3F3;
+
+    border-radius:20px;
+
+    margin-bottom:25px;
+
+}
+
+.idea-texto{
+
+    font-size:22px;
+
+    line-height:1.7;
+
+    margin-bottom:20px;
+
+}
+
+.idea-fecha{
+
+    color:#888;
+
+    font-size:14px;
+
+    margin-bottom:25px;
+
+}
+
+.idea-actions{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+.btn{
+
+    border:none;
+
+    border-radius:22px;
+
+    padding:12px 22px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+}
+
+.btn-editar{
+
+    background:#EAD9C6;
+
+    color:#4A4A4A;
+
+}
+
+.btn-volver{
+
+    background:#F2F2F2;
+
+    color:#4A4A4A;
+
+}
+
+@media(max-width:900px){
+
+    .idea-img{
+
+        height:280px;
+
+    }
+
+    .idea-texto{
+
+        font-size:18px;
+
+    }
 
 }
 
@@ -33,7 +161,51 @@ h1{
 
 <body>
 
-<h1>Idea funcionando ✅</h1>
+<section class="idea-page">
+
+    <a href="ideas-vestido.html" class="volver">
+
+        ← Volver a Ideas
+
+    </a>
+
+    <div class="idea-card">
+
+        <div class="idea-img"></div>
+
+        <div class="idea-texto">
+
+            Me gusta este vestido porque tiene una caída
+            elegante y una falda amplia. Consultar si puede
+            realizarse en color champagne.
+
+        </div>
+
+        <div class="idea-fecha">
+
+            06/08/2026
+
+        </div>
+
+        <div class="idea-actions">
+
+            <button class="btn btn-editar">
+
+                Editar
+
+            </button>
+
+            <button class="btn btn-volver">
+
+                Eliminar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
 
 </body>
 
