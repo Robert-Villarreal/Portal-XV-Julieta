@@ -88,13 +88,21 @@ body{
 
     display:grid;
 
-    grid-template-columns:
-    repeat(3,1fr);
+    grid-template-columns:repeat(3,1fr);
 
     gap:25px;
 
 }
+@media(max-width:900px){
 
+    .ficha-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+    
 .ficha-card{
 
     background:white;
@@ -357,37 +365,40 @@ body{
 
         <div class="ficha-card">
 
-    <h2>Ideas / Fotos / Notas</h2>
+            <h2>Ideas / Fotos / Notas</h2>
 
-    <p>
-        Ideas guardadas: 0
-    </p>
+            <p>
+                Ideas guardadas: 0
+            </p>
 
-    <p>
-        Última actualización: 06/08/2026
-    </p>
+            <p>
+                Última actualización: 06/08/2026
+            </p>
 
-    <div class="ideas-actions">
+            <div class="ideas-actions">
 
-        <button class="btn-secundario">
-            Ver Ideas
-        </button>
+                <button class="btn-secundario">
+                    Ver Ideas
+                </button>
 
-        <button class="btn-idea">
-            + Nueva Idea
-        </button>
+                <button class="btn-idea">
+                    + Nueva Idea
+                </button>
 
-    </div>
+            </div>
 
-</div>
+        </div>
 
-</div>
         <div class="ficha-card">
 
             <h2>Reuniones</h2>
 
             <p>
-                Seguimiento de pruebas y citas.
+                Reuniones registradas: 0
+            </p>
+
+            <p>
+                Próxima reunión: -
             </p>
 
         </div>
@@ -397,7 +408,11 @@ body{
             <h2>Cotizaciones</h2>
 
             <p>
-                Presupuestos recibidos.
+                Cotizaciones cargadas: 0
+            </p>
+
+            <p>
+                Proveedor elegido: -
             </p>
 
         </div>
@@ -407,7 +422,11 @@ body{
             <h2>Contratación</h2>
 
             <p>
-                Proveedor seleccionado.
+                Estado: Sin contratar
+            </p>
+
+            <p>
+                Contratado: $ 0
             </p>
 
         </div>
@@ -417,7 +436,11 @@ body{
             <h2>Movimientos</h2>
 
             <p>
-                Pagos y cuenta corriente.
+                Pagado: $ 0
+            </p>
+
+            <p>
+                Pendiente: $ 0
             </p>
 
         </div>
@@ -427,7 +450,7 @@ body{
             <h2>Historial</h2>
 
             <p>
-                Registro completo de cambios.
+                Sin registros históricos.
             </p>
 
         </div>
