@@ -1,265 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Ideas del Vestido | XV Julieta</title>
-
 <style>
-
-body{
-
-    margin:0;
-
-    font-family:Arial,sans-serif;
-
-    background:
-    linear-gradient(
-        180deg,
-        #FAF9F7 0%,
-        #F5DCE8 45%,
-        #DDECFB 100%
-    );
-
-    color:#4A4A4A;
-
-}
-
-.ideas-page{
-
-    max-width:1400px;
-
-    margin:auto;
-
-    padding:60px 20px;
-
-}
-
-.ideas-page h1{
-
-    text-align:center;
-
-    font-size:64px;
-
-    margin-bottom:30px;
-
-}
-
-.acciones{
-
-    text-align:center;
-
-    margin-bottom:40px;
-
-}
-
-.btn-idea{
-
-    background:#EAD9C6;
-
-    border:none;
-
-    padding:12px 24px;
-
-    border-radius:24px;
-
-    cursor:pointer;
-
-    font-size:16px;
-
-    color:#4A4A4A;
-
-}
-
-.btn-idea:hover{
-
-    background:#E1D0BD;
-
-}
-
-.ideas-grid{
-
-    column-count:3;
-
-    column-gap:25px;
-
-}
-
-.idea-card{
-
-    break-inside:avoid;
-
-    margin-bottom:25px;
-
-}
-
-    @media(max-width:900px){
-
-    .ideas-grid{
-
-        column-count:1;
-
-    }
-
-    .ideas-page h1{
-
-        font-size:48px;
-
-    }
-
-}
-.idea-card:hover{
-
-    transform:translateY(-3px);
-
-}
-
-.idea-img{
-
-    width:100%;
-
-    height:220px;
-
-    background:#F8F8F8;
-
-    border-radius:18px;
-
-    margin-bottom:15px;
-
-}
-
-.idea-texto{
-
-    font-size:16px;
-
-    font-weight:600;
-
-    line-height:1.4;
-
-    margin-bottom:10px;
-
-}
-
-.idea-fecha{
-
-    color:#888;
-
-    font-size:13px;
-
-}
-
-/* IDEA SIN FOTO */
-
-.idea-card.sin-foto{
-
-    padding:20px;
-
-}
-
-.idea-card.sin-foto .idea-texto{
-
-    margin-bottom:15px;
-
-}
-
-/* RESPONSIVE */
-
-@media(max-width:900px){
-
-    .ideas-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .ideas-page h1{
-
-        font-size:48px;
-
-    }
-
-}
-
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#FAF9F7 0%,#F5DCE8 45%,#DDECFB 100%);color:#4A4A4A}
+.page{max-width:1400px;margin:auto;padding:60px 20px}
+.topbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;margin-bottom:30px}
+.volver,.btn{display:inline-block;text-decoration:none;padding:12px 20px;border-radius:24px}
+.volver{background:#F5F5F5;color:#4A4A4A;border:1px solid #DDD}
+.btn{background:#EAD9C6;color:#4A4A4A}
+h1{text-align:center;font-size:64px;margin:0 0 30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px}
+.card{background:#fff;border-radius:28px;padding:18px;box-shadow:0 8px 25px rgba(0,0,0,.05);text-decoration:none;color:#4A4A4A}
+.img{height:220px;background:#F4F4F4;border-radius:18px;margin-bottom:15px}
+.txt{font-weight:600;margin-bottom:10px}.fecha{font-size:13px;color:#888}
+@media(max-width:900px){h1{font-size:48px}}
 </style>
-
 </head>
-
 <body>
-
-<section class="ideas-page">
-
-    <h1>Ideas del Vestido</h1>
-
-    <div class="acciones">
-
-        <button
-    class="btn-idea"
-    onclick="window.location.href='nueva
-
-    </div>
-
-    <div class="ideas-grid">
-
-        <div class="idea-card">
-
-            <div class="idea-img"></div>
-
-            <div class="idea-texto">
-                Vestido princesa con falda amplia
-            </div>
-
-            <div class="idea-fecha">
-                06/08/2026
-            </div>
-
-        </div>
-
-        <div class="idea-card sin-foto">
-
-            <div class="idea-texto">
-                Consultar vestido visto en Ramos Mejía.
-            </div>
-
-            <div class="idea-fecha">
-                08/08/2026
-            </div>
-
-        </div>
-
-        <div
-  ml
-
-            <div class="idea-img"></div>
-
-            <div class="idea-texto">
-                Espalda descubierta
-            </div>
-
-            <div class="idea-fecha">
-                12/08/2026
-            </div>
-
-        </div>
-
-        <div class="idea-card sin-foto">
-
-            <div class="idea-texto">
-                Preguntar si puede hacerse en tono champagne.
-            </div>
-
-            <div class="idea-fecha">
-                14/08/2026
-            </div>
-
-        </div>
-
-    </div>
-
+<section class="page">
+<div class="topbar">
+<a href="mi-vestido.html" class="volver">← Volver a Mi Vestido</a>
+<a href="nueva-idea.html" class="btn">+ Nueva Idea</a>
+</div>
+<h1>Ideas del Vestido</h1>
+<div class="grid">
+<a href="idea.html" class="card"><div class="img"></div><div class="txt">Vestido princesa con falda amplia</div><div class="fecha">06/08/2026</div></a>
+<a href="idea.html" class="card"><div class="txt">Consultar vestido visto en Ramos Mejía.</div><div class="fecha">08/08/2026</div></a>
+<a href="idea.html" class="card"><div class="img"></div><div class="txt">Espalda descubierta</div><div class="fecha">12/08/2026</div></a>
+<a href="idea.html" class="card"><div class="txt">Preguntar si puede hacerse en tono champagne.</div><div class="fecha">14/08/2026</div></a>
+</div>
 </section>
-
 </body>
-
 </html>
