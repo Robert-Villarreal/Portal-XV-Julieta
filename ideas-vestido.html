@@ -90,23 +90,27 @@ body{
 
 .idea-card{
 
-    background:white;
+    break-inside:avoid;
 
-    border-radius:28px;
-
-    padding:18px;
-
-    border:1px solid rgba(191,197,204,.20);
-
-    box-shadow:
-    0 8px 25px rgba(0,0,0,.05);
-
-    cursor:pointer;
-
-    transition:.3s;
+    margin-bottom:25px;
 
 }
 
+    @media(max-width:900px){
+
+    .ideas-grid{
+
+        column-count:1;
+
+    }
+
+    .ideas-page h1{
+
+        font-size:48px;
+
+    }
+
+}
 .idea-card:hover{
 
     transform:translateY(-3px);
