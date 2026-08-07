@@ -1,1 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ideas del Vestido | XV Julieta</title>
+
+<style>
+
+body{
+
+    margin:0;
+
+    font-family:Arial, sans-serif;
+
+    background:
+    linear-gradient(
+        180deg,
+        #FAF9F7 0%,
+        #F5DCE8 45%,
+        #DDECFB 100%
+    );
+
+    color:#4A4A4A;
+
+}
+
+.ideas-page{
+
+    max-width:1400px;
+
+    margin:auto;
+
+    padding:60px 20px;
+
+}
+
+.ideas-page h1{
+
+    text-align:center;
+
+    font-size:64px;
+
+    margin-bottom:30px;
+
+}
+
+.acciones{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+.btn-idea{
+
+    background:#EAD9C6;
+
+    border:none;
+
+    padding:12px 24px;
+
+    border-radius:24px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    color:#4A4A4A;
+
+}
+
+.btn-idea:hover{
+
+    background:#E1D0BD;
+
+}
+
+.ideas-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+.idea-card{
+
+    background:white;
+
+    border-radius:28px;
+
+    padding:20px;
+
+    border:1px solid rgba(191,197,204,.20);
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.05);
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.idea-card:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.idea-img{
+
+    height:260px;
+
+    background:#F8F8F8;
+
+    border:2px dashed #DDD;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#999;
+
+    margin-bottom:15px;
+
+}
+
+.idea-texto{
+
+    font-size:16px;
+
+    font-weight:600;
+
+    margin:0 0 10px 0;
+
+}
+
+.idea-fecha{
+
+    color:#888;
+
+    font-size:13px;
+
+}
+
+@media(max-width:900px){
+
+    .ideas-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .ideas-page h1{
+
+        font-size:48px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<section class="ideas-page">
+
+    <h1>Ideas del Vestido</h1>
+
+    <div class="acciones">
+
+        <button class="btn-idea">
+            + Nueva Idea
+        </button>
+
+    </div>
+
+    <div class="ideas-grid">
+
+        <div class="idea-card">
+
+            <div class="idea-img">
+
+                Sin foto
+
+            </div>
+
+            <p class="idea-texto">
+
+                Vestido princesa
+
+            </p>
+
+            <span class
