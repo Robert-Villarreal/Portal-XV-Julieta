@@ -85,4 +85,186 @@ body{
 
 .campo label{
 
-    display:
+    display:block;
+
+    margin-bottom:10px;
+
+    font-weight:600;
+
+}
+
+.upload-box{
+
+    border:2px dashed #D8D8D8;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    text-align:center;
+
+    background:#FAFAFA;
+
+}
+
+.upload-box input{
+
+    margin-top:15px;
+
+}
+
+textarea{
+
+    width:100%;
+
+    min-height:180px;
+
+    border:1px solid #DDD;
+
+    border-radius:20px;
+
+    padding:15px;
+
+    box-sizing:border-box;
+
+    resize:vertical;
+
+    font-family:Arial,sans-serif;
+
+    font-size:16px;
+
+}
+
+.actions{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+.btn{
+
+    border:none;
+
+    border-radius:24px;
+
+    padding:12px 24px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+}
+
+.btn-guardar{
+
+    background:#EAD9C6;
+
+    color:#4A4A4A;
+
+}
+
+.btn-cancelar{
+
+    background:#F2F2F2;
+
+    color:#4A4A4A;
+
+}
+
+.btn-guardar:hover{
+
+    background:#E1D0BD;
+
+}
+
+.btn-cancelar:hover{
+
+    background:#E8E8E8;
+
+}
+
+@media(max-width:900px){
+
+    .idea-page{
+
+        max-width:100%;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<section class="idea-page">
+
+    <a href="ideas-vestido.html" class="volver">
+
+        ← Volver a Ideas
+
+    </a>
+
+    <div class="idea-card">
+
+        <h1>Nueva Idea</h1>
+
+        <div class="campo">
+
+            <label>
+
+                Foto (opcional)
+
+            </label>
+
+            <div class="upload-box">
+
+                Agregar imagen
+
+                <br><br>
+
+                <input type="file">
+
+            </div>
+
+        </div>
+
+        <div class="campo">
+
+            <label>
+
+                Comentario
+
+            </label>
+
+            <textarea placeholder="Escribí aquí la idea, comentario o referencia..."></textarea>
+
+        </div>
+
+        <div class="actions">
+
+            <button class="btn btn-guardar">
+
+                Guardar
+
+            </button>
+
+            <button class="btn btn-cancelar">
+
+                Cancelar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+
+</html>
