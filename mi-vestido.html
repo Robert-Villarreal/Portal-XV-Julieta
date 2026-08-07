@@ -1,27 +1,45 @@
 <!DOCTYPE html>
-2
-<html>
-3
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Vestido | XV Julieta</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#FAF9F7 0%,#F5DCE8 45%,#DDECFB 100%);color:#4A4A4A}
+.vestido{max-width:1400px;margin:auto;padding:60px 20px}
+.titulo{text-align:center;font-size:72px;margin:0 0 20px}
+.estado-header{text-align:center;margin-bottom:40px}.estado{display:inline-block;padding:12px 28px;border-radius:30px;background:#FFF4D6;color:#A66A00;font-size:20px}
+.ficha-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}.ficha-card{background:#fff;padding:28px;border-radius:28px;border:1px solid rgba(191,197,204,.2);box-shadow:0 8px 25px rgba(0,0,0,.05)}
+.ficha-card h2{margin-top:0}.acciones{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.btn{display:inline-block;padding:10px 18px;border-radius:22px;text-decoration:none;font-size:14px}
+.btn-sec{background:#F5F5F5;border:1px solid #DDD;color:#4A4A4A}.btn-pri{background:#EAD9C6;color:#4A4A4A}
+@media(max-width:900px){.ficha-grid{grid-template-columns:1fr}.titulo{font-size:52px}}
+</style>
+</head>
 <body>
-4
- 
-5
-<h1>Prueba OK</h1>
-6
- 
-7
-ido.html">Ver Ideas</a>
-8
- 
-9
-<br><br>
-10
- 
-11
-<a href="nueva-idea.html">+ Nueva Idea</a>
-12
- 
-13
+<section class="vestido">
+<h1 class="titulo">Mi Vestido</h1>
+<div class="estado-header">
+<div class="estado">En búsqueda</div>
+<p>Proveedor contratado: Sin definir</p>
+<p>Última actualización: 06/08/2026</p>
+</div>
+<div class="ficha-grid">
+<div class="ficha-card">
+<h2>Ideas / Fotos / Notas</h2>
+<p>Ideas guardadas: 0</p>
+<p>Última actualización: 06/08/2026</p>
+<div class="acciones">
+<a href="ideas-vestido.html" class="btn btn-sec">Ver Ideas</a>
+<a href="nueva-idea.html" class="btn btn-pri">+ Nueva Idea</a>
+</div>
+</div>
+<div class="ficha-card"><h2>Reuniones</h2><p>Reuniones registradas: 0</p><p>Próxima reunión: -</p></div>
+<div class="ficha-card"><h2>Cotizaciones</h2><p>Cotizaciones cargadas: 0</p><p>Proveedor elegido: -</p></div>
+<div class="ficha-card"><h2>Contratación</h2><p>Estado: Sin contratar</p><p>Contratado: $ 0</p></div>
+<div class="ficha-card"><h2>Movimientos</h2><p>Pagado: $ 0</p><p>Pendiente: $ 0</p></div>
+<div class="ficha-card"><h2>Historial</h2><p>Sin registros históricos.</p></div>
+</div>
+</section>
 </body>
-14
 </html>
