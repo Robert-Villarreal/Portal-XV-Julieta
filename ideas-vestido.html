@@ -14,7 +14,7 @@ body{
 
     margin:0;
 
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
 
     background:
     linear-gradient(
@@ -96,7 +96,7 @@ body{
 
     border-radius:28px;
 
-    padding:20px;
+    padding:18px;
 
     border:1px solid rgba(191,197,204,.20);
 
@@ -117,21 +117,13 @@ body{
 
 .idea-img{
 
-    height:260px;
+    width:100%;
+
+    height:220px;
 
     background:#F8F8F8;
 
-    border:2px dashed #DDD;
-
     border-radius:18px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    color:#999;
 
     margin-bottom:15px;
 
@@ -143,7 +135,9 @@ body{
 
     font-weight:600;
 
-    margin:0 0 10px 0;
+    line-height:1.4;
+
+    margin-bottom:10px;
 
 }
 
@@ -154,6 +148,22 @@ body{
     font-size:13px;
 
 }
+
+/* IDEA SIN FOTO */
+
+.idea-card.sin-foto{
+
+    padding:20px;
+
+}
+
+.idea-card.sin-foto .idea-texto{
+
+    margin-bottom:15px;
+
+}
+
+/* RESPONSIVE */
 
 @media(max-width:900px){
 
@@ -193,67 +203,53 @@ body{
 
         <div class="idea-card">
 
-            <div class="idea-img">
+            <div class="idea-img"></div>
 
-                Sin foto
-
+            <div class="idea-texto">
+                Vestido princesa con falda amplia
             </div>
 
-            <p class="idea-texto">
-
-                Vestido princesa
-
-            </p>
-
-            <span class="idea-fecha">
-
+            <div class="idea-fecha">
                 06/08/2026
+            </div>
 
-            </span>
+        </div>
+
+        <div class="idea-card sin-foto">
+
+            <div class="idea-texto">
+                Consultar vestido visto en Ramos Mejía.
+            </div>
+
+            <div class="idea-fecha">
+                08/08/2026
+            </div>
 
         </div>
 
         <div class="idea-card">
 
-            <div class="idea-img">
+            <div class="idea-img"></div>
 
-                Sin foto
-
-            </div>
-
-            <p class="idea-texto">
-
-                Color champagne
-
-            </p>
-
-            <span class="idea-fecha">
-
-                10/08/2026
-
-            </span>
-
-        </div>
-
-        <div class="idea-card">
-
-            <div class="idea-img">
-
-                Sin foto
-
-            </div>
-
-            <p class="idea-texto">
-
+            <div class="idea-texto">
                 Espalda descubierta
+            </div>
 
-            </p>
-
-            <span class="idea-fecha">
-
+            <div class="idea-fecha">
                 12/08/2026
+            </div>
 
-            </span>
+        </div>
+
+        <div class="idea-card sin-foto">
+
+            <div class="idea-texto">
+                Preguntar si puede hacerse en tono champagne.
+            </div>
+
+            <div class="idea-fecha">
+                14/08/2026
+            </div>
 
         </div>
 
