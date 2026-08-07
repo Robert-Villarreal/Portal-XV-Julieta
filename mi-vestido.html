@@ -1,205 +1,117 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mi Vestido | XV Julieta</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(
+        180deg,
+        #FAF9F7 0%,
+        #F5DCE8 45%,
+        #DDECFB 100%
+    );
+    color:#4A4A4A;
+}
+
+.vestido{
+    max-width:1400px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+h1{
+    text-align:center;
+    font-size:72px;
+    margin-bottom:20px;
+}
+
+.estado-header{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.estado{
+    display:inline-block;
+    padding:12px 28px;
+    border-radius:30px;
+    background:#FFF4D6;
+    color:#A66A00;
+    font-size:20px;
+    margin-bottom:15px;
+}
+
+.estado-header p{
+    margin:8px 0;
+    color:#666;
+    font-size:18px;
+}
+
+.ficha-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.ficha-card{
+    background:white;
+    padding:25px;
+    border-radius:28px;
+    border:1px solid rgba(191,197,204,.20);
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.ficha-card h2{
+    margin-top:0;
+    font-size:30px;
+}
+
+.ficha-card p{
+    color:#666;
+}
+
+.ideas-actions{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+    flex-wrap:wrap;
+}
+
+.btn-secundario{
+    background:#F5F5F5;
+    border:1px solid #DDD;
+    padding:10px 18px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.btn-idea{
+    background:#EAD9C6;
+    border:none;
+    padding:10px 18px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+@media(max-width:900px){
+
+    h1{
+        font-size:52px;
+    }
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    .ficha-grid{
+        grid-template-columns:1fr;
+    }
 
-    <title>Mi Vestido | XV Julieta</title>
+}
 
-    <style>
-
-        body{
-
-            margin:0;
-
-            font-family:Arial,sans-serif;
-
-            background:
-            linear-gradient(
-                180deg,
-                #FAF9F7 0%,
-                #F5DCE8 45%,
-                #DDECFB 100%
-            );
-
-            color:#4A4A4A;
-
-        }
-
-        .vestido{
-
-            max-width:1400px;
-
-            margin:auto;
-
-            padding:60px 20px;
-
-        }
-
-        .vestido h1{
-
-            text-align:center;
-
-            font-size:72px;
-
-            margin-bottom:20px;
-
-        }
-
-        .estado-header{
-
-            text-align:center;
-
-            margin-bottom:35px;
-
-        }
-
-        .estado{
-
-            display:inline-block;
-
-            padding:12px 28px;
-
-            border-radius:30px;
-
-            background:#FFF4D6;
-
-            color:#A66A00;
-
-            font-size:20px;
-
-            margin-bottom:15px;
-
-        }
-
-        .estado-header p{
-
-            margin:8px 0;
-
-            color:#666;
-
-            font-size:18px;
-
-        }
-
-        .ficha-grid{
-
-            display:grid;
-
-            grid-template-columns:repeat(3,1fr);
-
-            gap:25px;
-
-        }
-
-        .ficha-card{
-
-            background:white;
-
-            padding:25px;
-
-            border-radius:28px;
-
-            min-height:130px;
-
-            border:1px solid rgba(191,197,204,.20);
-
-            box-shadow:
-            0 8px 25px rgba(0,0,0,.05);
-
-        }
-
-        .ficha-card h2{
-
-            margin-top:0;
-
-            font-size:30px;
-
-        }
-
-        .ficha-card p{
-
-            color:#666;
-
-            margin-bottom:12px;
-
-        }
-
-        .ideas-actions{
-
-            display:flex;
-
-            gap:10px;
-
-            margin-top:20px;
-
-            flex-wrap:wrap;
-
-        }
-
-        .btn-secundario{
-
-            background:#F5F5F5;
-
-            border:1px solid #DDD;
-
-            padding:10px 18px;
-
-            border-radius:20px;
-
-            cursor:pointer;
-
-            color:#4A4A4A;
-
-        }
-
-        .btn-secundario:hover{
-
-            background:#ECECEC;
-
-        }
-
-        .btn-idea{
-
-            background:#EAD9C6;
-
-            border:none;
-
-            padding:10px 18px;
-
-            border-radius:20px;
-
-            cursor:pointer;
-
-            color:#4A4A4A;
-
-        }
-
-        .btn-idea:hover{
-
-            background:#E2CFBA;
-
-        }
-
-        @media(max-width:900px){
-
-            .ficha-grid{
-
-                grid-template-columns:1fr;
-
-            }
-
-            .vestido h1{
-
-                font-size:52px;
-
-            }
-
-        }
-
-    </style>
+</style>
 
 </head>
 
@@ -242,15 +154,11 @@
             <div class="ideas-actions">
 
                 ideas-vestido.html
-
                     Ver Ideas
-
                 </button>
 
                 nueva-idea.html
-
                     + Nueva Idea
-
                 </button>
 
             </div>
@@ -328,5 +236,4 @@
 </section>
 
 </body>
-
 </html>
