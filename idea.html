@@ -58,7 +58,7 @@ body{
 
     border-radius:30px;
 
-    padding:25px;
+    padding:30px;
 
     border:1px solid rgba(191,197,204,.20);
 
@@ -71,13 +71,19 @@ body{
 
     width:100%;
 
-    height:450px;
-
-    background:#F3F3F3;
-
     border-radius:20px;
 
     margin-bottom:25px;
+
+    overflow:hidden;
+
+}
+
+.idea-img img{
+
+    width:100%;
+
+    display:block;
 
 }
 
@@ -85,7 +91,7 @@ body{
 
     font-size:22px;
 
-    line-height:1.7;
+    line-height:1.8;
 
     margin-bottom:20px;
 
@@ -131,7 +137,7 @@ body{
 
 }
 
-.btn-volver{
+.btn-eliminar{
 
     background:#F2F2F2;
 
@@ -139,13 +145,19 @@ body{
 
 }
 
+.btn-editar:hover{
+
+    background:#E1D0BD;
+
+}
+
+.btn-eliminar:hover{
+
+    background:#E8E8E8;
+
+}
+
 @media(max-width:900px){
-
-    .idea-img{
-
-        height:280px;
-
-    }
 
     .idea-texto{
 
@@ -171,13 +183,10 @@ body{
 
     <div class="idea-card">
 
-        <div class="idea-img"></div>
-
         <div class="idea-texto">
 
-            Me gusta este vestido porque tiene una caída
-            elegante y una falda amplia. Consultar si puede
-            realizarse en color champagne.
+            Me gusta este vestido porque tiene una caída elegante y una falda amplia.
+            Consultar si puede realizarse en color champagne.
 
         </div>
 
@@ -195,7 +204,7 @@ body{
 
             </button>
 
-            <button class="btn btn-volver">
+            <button class="btn btn-eliminar">
 
                 Eliminar
 
