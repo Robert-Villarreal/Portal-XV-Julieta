@@ -1,270 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Nueva Idea | XV Julieta</title>
-
 <style>
-
-body{
-
-    margin:0;
-
-    font-family:Arial,sans-serif;
-
-    background:
-    linear-gradient(
-        180deg,
-        #FAF9F7 0%,
-        #F5DCE8 45%,
-        #DDECFB 100%
-    );
-
-    color:#4A4A4A;
-
-}
-
-.idea-page{
-
-    max-width:700px;
-
-    margin:auto;
-
-    padding:60px 20px;
-
-}
-
-.volver{
-
-    display:inline-block;
-
-    margin-bottom:25px;
-
-    text-decoration:none;
-
-    color:#666;
-
-    font-size:15px;
-
-}
-
-.idea-card{
-
-    background:white;
-
-    border-radius:30px;
-
-    padding:35px;
-
-    border:1px solid rgba(191,197,204,.20);
-
-    box-shadow:
-    0 8px 25px rgba(0,0,0,.05);
-
-}
-
-.idea-card h1{
-
-    margin-top:0;
-
-    margin-bottom:30px;
-
-    font-size:36px;
-
-}
-
-.campo{
-
-    margin-bottom:25px;
-
-}
-
-.campo label{
-
-    display:block;
-
-    margin-bottom:10px;
-
-    font-weight:600;
-
-}
-
-.upload-box{
-
-    border:2px dashed #D8D8D8;
-
-    border-radius:20px;
-
-    padding:40px;
-
-    text-align:center;
-
-    background:#FAFAFA;
-
-}
-
-.upload-box input{
-
-    margin-top:15px;
-
-}
-
-textarea{
-
-    width:100%;
-
-    min-height:180px;
-
-    border:1px solid #DDD;
-
-    border-radius:20px;
-
-    padding:15px;
-
-    box-sizing:border-box;
-
-    resize:vertical;
-
-    font-family:Arial,sans-serif;
-
-    font-size:16px;
-
-}
-
-.actions{
-
-    display:flex;
-
-    gap:12px;
-
-}
-
-.btn{
-
-    border:none;
-
-    border-radius:24px;
-
-    padding:12px 24px;
-
-    cursor:pointer;
-
-    font-size:15px;
-
-}
-
-.btn-guardar{
-
-    background:#EAD9C6;
-
-    color:#4A4A4A;
-
-}
-
-.btn-cancelar{
-
-    background:#F2F2F2;
-
-    color:#4A4A4A;
-
-}
-
-.btn-guardar:hover{
-
-    background:#E1D0BD;
-
-}
-
-.btn-cancelar:hover{
-
-    background:#E8E8E8;
-
-}
-
-@media(max-width:900px){
-
-    .idea-page{
-
-        max-width:100%;
-
-    }
-
-}
-
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#FAF9F7 0%,#F5DCE8 45%,#DDECFB 100%);color:#4A4A4A}
+.idea-page{max-width:800px;margin:auto;padding:60px 20px}
+.volver{display:inline-block;margin-bottom:25px;text-decoration:none;color:#666;font-size:15px}
+.idea-card{background:#fff;border-radius:30px;padding:35px;box-shadow:0 8px 25px rgba(0,0,0,.05)}
+h1{margin-top:0;font-size:42px}.campo{margin-bottom:25px}label{display:block;margin-bottom:10px;font-weight:600}
+input[type=text],textarea{width:100%;box-sizing:border-box;border:1px solid #DDD;border-radius:20px;padding:15px;font-size:16px}
+textarea{min-height:180px;resize:vertical}
+.upload-box{border:2px dashed #D8D8D8;border-radius:20px;padding:30px;text-align:center;background:#FAFAFA}
+.preview{max-width:100%;max-height:250px;border-radius:16px;display:none;margin-top:15px}
+.actions{display:flex;gap:12px}.btn{border:none;border-radius:24px;padding:12px 24px;cursor:pointer;font-size:15px}.btn-guardar{background:#EAD9C6}.btn-cancelar{background:#F2F2F2}
 </style>
-
-</head>
-
-<body>
-
+</head><body>
 <section class="idea-page">
-
-    <a href="ideas-vestido.html" class="volver">
-
-        ← Volver a Ideas
-
-    </a>
-
-    <div class="idea-card">
-
-        <h1>Nueva Idea</h1>
-
-        <div class="campo">
-
-            <label>
-
-                Foto (opcional)
-
-            </label>
-
-            <div class="upload-box">
-
-                Agregar imagen
-
-                <br><br>
-
-                <input type="file">
-
-            </div>
-
-        </div>
-
-        <div class="campo">
-
-            <label>
-
-                Comentario
-
-            </label>
-
-            <textarea placeholder="Escribí aquí la idea, comentario o referencia..."></textarea>
-
-        </div>
-
-        <div class="actions">
-
-            <button class="btn btn-guardar">
-
-                Guardar
-
-            </button>
-
-            <button class="btn btn-cancelar">
-
-                Cancelar
-
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
+<a href="ideas-vestido.html" class="volver">← Volver a Ideas</a>
+<div class="idea-card">
+<h1>Nueva Idea</h1>
+<div class="campo"><label>Título</label><input id="titulo" type="text" placeholder="Ej: Vestido champagne"></div>
+<div class="campo"><label>Foto (opcional)</label><div class="upload-box">Agregar imagen<br><br><input id="foto" type="file" accept="image/*"><img id="preview" class="preview"></div></div>
+<div class="campo"><label>Comentario</label><textarea id="comentario" placeholder="Escribí aquí la idea, comentario o referencia..."></textarea></div>
+<div class="actions"><button class="btn btn-guardar" onclick="guardarIdea()">Guardar</button><button class="btn btn-cancelar" onclick="location.href='ideas-vestido.html'">Cancelar</button></div>
+</div></section>
+<script>
+let imagenBase64='';
+document.getElementById('foto').addEventListener('change',function(e){const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=function(){imagenBase64=r.result; const p=document.getElementById('preview'); p.src=imagenBase64; p.style.display='block';}; r.readAsDataURL(f);});
+function guardarIdea(){const titulo=document.getElementById('titulo').value.trim(); const comentario=document.getElementById('comentario').value.trim(); if(!titulo||!comentario){alert('Completá título y comentario'); return;} const ideas=JSON.parse(localStorage.getItem('ideasVestido')||'[]'); ideas.unshift({id:Date.now(),titulo:titulo,comentario:comentario,fecha:new Date().toLocaleDateString('es-AR'),imagen:imagenBase64}); localStorage.setItem('ideasVestido',JSON.stringify(ideas)); location.href='ideas-vestido.html';}
+</script>
 </body>
-
 </html>
