@@ -55,8 +55,46 @@ body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#FA
 <div class="ficha-grid">
 <div class="ficha-card">
 <h2>Ideas / Fotos / Notas</h2>
-<p>Ideas guardadas: 0</p>
-<p>Última actualización: 06/08/2026</p>
+<p>Ideas guardadas:
+<span id="contadorIdeas">0</span>
+<script>
+<script>
+
+const ideas =
+JSON.parse(
+    localStorage.getItem("ideasVestido") || "[]"
+);
+
+document.getElementById(
+    "contadorIdeas"
+).textContent = ideas.length;
+
+if(ideas.length>0){
+
+    document.getElementById(
+        "ultimaActualizacion"
+    ).textContent =
+    ideas[0].fecha;
+
+}
+
+</script>
+const ideas =
+JSON.parse(
+    localStorage.getItem("ideasVestido") || "[]"
+);
+
+document.getElementById(
+    "contadorIdeas"
+).textContent = ideas.length;
+
+</script>
+</p>
+<p>Última actualización:
+<span id="ultimaActualizacion">
+-
+</span>
+</p>
 <div class="acciones">
 <a href="ideas-vestido.html" class="btn btn-sec">Ver Ideas</a>
 <a href="nueva-idea.html" class="btn btn-pri">+ Nueva Idea</a>
