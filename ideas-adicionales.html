@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ideas Adicionales · XV Julieta</title>
+
+<style>
+
+body{
+
+    margin:0;
+
+    font-family:Arial,sans-serif;
+
+    background:
+    linear-gradient(
+        180deg,
+        #FAF9F7 0%,
+        #F5DCE8 45%,
+        #DDECFB 100%
+    );
+
+    color:#4A4A4A;
+}
+
+.container{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:50px 20px 100px;
+}
+
+.volver{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    color:#666;
+
+    margin-bottom:30px;
+}
+
+h1{
+
+    text-align:center;
+
+    font-size:64px;
+
+    margin-bottom:15px;
+}
+
+.intro{
+
+    text-align:center;
+
+    color:#777;
+
+    max-width:700px;
+
+    margin:0 auto 50px;
+
+    line-height:1.8;
+}
+
+.toolbar{
+
+    text-align:center;
+
+    margin-bottom:40px;
+}
+
+.btn{
+
+    display:inline-block;
+
+    padding:14px 30px;
+
+    border-radius:40px;
+
+    border:none;
+
+    background:#D4AF37;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    text-decoration:none;
+}
+
+.form-box{
+
+    display:none;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:30px;
+
+    margin-bottom:40px;
+
+    box-shadow:
+    0 12px 30px rgba(0,0,0,.05);
+}
+
+.form-box input,
+.form-box select,
+.form-box textarea{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-top:8px;
+
+    margin-bottom:20px;
+
+    border-radius:12px;
+
+    border:1px solid #DDD;
+
+    box-sizing:border-box;
+}
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+}
+
+.idea-card{
+
+    background:
+    rgba(255,255,255,.80);
+
+    backdrop-filter:blur(10px);
+
+    border-radius:30px;
+
+    padding:30px;
+
+    box-shadow:
+    0 12px 30px rgba(0,0,0,.04);
+}
+
+.idea-card h3{
+
+    margin-top:0;
+}
+
+.categoria{
+
+    display:inline-block;
+
+    margin-top:10px;
+
+    padding:8px 16px;
+
+    border-radius:20px;
+
+    background:#F5F5F5;
+
+    color:#666;
+
+    font-size:14px;
+}
+
+.fecha{
+
+    margin-top:15px;
+
+    color:#999;
+
+    font-size:13px;
+}
+
+@media(max-width:768px){
+
+    h1{
+
+        font-size:48px;
+    }
+
+    .grid{
+
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <a
+       href="mi-look-v2.html"
+       class="volver">
+
+       ← Volver a Mi Look
+
+    </a>
+
+    <h1>
+        Ideas Adicionales
+    </h1>
+
+    <p class="intro">
+
+        Maquillaje, peinado, accesorios y detalles
+        que completan mi look.
+
+    </p>
+
+    <div class="toolbar">
+
+        <button
+            class="btn"
+            onclick="mostrarFormulario()">
+
+            + Nueva Idea
+
+        </button>
+
+    </div>
+
+    <div
+        id="formulario"
+        class="form-box">
+
+        <label>
+            Título
+        </label>
+
+        <input
+            id="titulo"
+            type="text">
+
+        <label>
+            Categoría
+        </label>
+
+        <select id="categoria">
+
+            <option>
+                Maquillaje y Peinado
+            </option>
+
+            <option>
+                Zapatos
+            </option>
+
+            <option>
+                Accesorios
+            </option>
+
+            <option>
+                Tocado
+            </option>
+
+            <option>
+                Manicura
+            </option>
+
+            <option>
+                Otros
+            </option>
+
+        </select>
+
+        <label>
+            Observaciones
+        </label>
+
+        <textarea
+            id="observaciones"
+            rows="4"></textarea>
+
+        <button
+            class="btn"
+            onclick="guardarIdea()">
+
+            Guardar Idea
+
+        </button>
+
+    </div>
+
+    <div
+        id="contenedorIdeas"
+        class="grid">
+
+    </div>
+
+</div>
+
+<script>
+
+function mostrarFormulario(){
+
+    document
+        .getElementById("formulario")
+        .style.display = "block";
+}
+
+function guardarIdea(){
+
+    const titulo =
+        document.getElementById("titulo").value;
+
+    const categoria =
+        document.getElementById("categoria").value;
+
+    const observaciones =
+        document.getElementById("observaciones").value;
+
+    if(!titulo){
+
+        alert("Ingresá un título");
+
+        return;
+    }
+
+    const idea = {
+
+        titulo,
+        categoria,
+        observaciones,
+        fecha:
+        new Date()
+        .toLocaleDateString("es-AR")
+    };
+
+    let ideas =
+        JSON.parse(
+            localStorage.getItem(
+                "ideasAdicionales"
+            )
+        ) || [];
+
+    ideas.push(idea);
+
+    localStorage.setItem(
+        "ideasAdicionales",
+        JSON.stringify(ideas)
+    );
+
+    cargarIdeas();
+
+    document
+        .getElementById("formulario")
+        .reset();
+
+    document
+        .getElementById("formulario")
+        .style.display = "none";
+}
+
+function cargarIdeas(){
+
+    const contenedor =
+        document.getElementById(
+            "contenedorIdeas"
+        );
+
+    contenedor.innerHTML = "";
+
+    let ideas =
+        JSON.parse(
+            localStorage.getItem(
+                "ideasAdicionales"
+            )
+        ) || [];
+
+    ideas.reverse().forEach(item => {
+
+        contenedor.innerHTML += `
+
+        <div class="idea-card">
+
+            <h3>
+                ${item.titulo}
+            </h3>
+
+            <div class="categoria">
+                ${item.categoria}
+            </div>
+
+            <p>
+                ${item.observaciones}
+            </p>
+
+            <div class="fecha">
+                ${item.fecha}
+            </div>
+
+        </div>
+
+        `;
+    });
+}
+
+cargarIdeas();
+
+</script>
+
+</body>
+</html>
