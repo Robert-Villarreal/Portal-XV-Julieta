@@ -4,34 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ideas del Vestido | XV Julieta</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#FAF9F7 0%,#F5DCE8 45%,#DDECFB 100%);color:#4A4A4A}
-.page{max-width:1500px;margin:auto;padding:40px 20px}
-.header{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:30px}
-h1{text-align:center;font-size:64px;font-weight:300;margin:20px 0 40px}
-.btn{display:inline-block;text-decoration:none;padding:12px 22px;border-radius:30px;font-size:14px}.btn-back{background:#fff;border:1px solid #ddd;color:#555}.btn-new{background:#ead9c6;color:#4A4A4A}
-.ideas-grid{column-count:3;column-gap:24px}
-.card{display:inline-block;width:100%;margin:0 0 24px;background:#fff;border-radius:28px;overflow:hidden;text-decoration:none;color:#4A4A4A;box-shadow:0 8px 25px rgba(0,0,0,.05);transition:.25s}
-.card:hover{transform:translateY(-6px);box-shadow:0 14px 35px rgba(0,0,0,.12)}
-.hero{width:100%;display:block}.placeholder{height:180px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f6eee8,#fdeef6);color:#9f8876}
-.content{padding:20px}.titulo{font-size:18px;font-weight:600;margin-bottom:10px}.comentario{font-size:14px;line-height:1.5;margin-bottom:12px}.fecha{font-size:13px;color:#888}
-@media(max-width:1100px){.ideas-grid{column-count:2}} @media(max-width:700px){.ideas-grid{column-count:1}h1{font-size:42px}}
-</style>
-</head>
-<body>
+.page{max-width:1500px;margin:auto;padding:40px 20px}.header{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+h1{text-align:center;font-size:64px;font-weight:300;margin:20px 0 40px}.btn{display:inline-block;text-decoration:none;padding:12px 22px;border-radius:30px}
+.btn-back{background:#fff;border:1px solid #ddd;color:#555}.btn-new{background:#ead9c6;color:#4A4A4A}
+.ideas-grid{column-count:3;column-gap:24px}.card{display:inline-block;width:100%;margin:0 0 24px;background:#fff;border-radius:28px;overflow:hidden;text-decoration:none;color:#4A4A4A;box-shadow:0 8px 25px rgba(0,0,0,.05)}
+.card img{width:100%;display:block}.content{padding:20px}.titulo{font-size:18px;font-weight:600}.comentario{margin:10px 0}.fecha{font-size:13px;color:#888}.placeholder{height:180px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f6eee8,#fdeef6)}
+@media(max-width:1100px){.ideas-grid{column-count:2}}@media(max-width:700px){.ideas-grid{column-count:1}h1{font-size:42px}}
+</style></head><body>
 <section class="page">
-<div class="header">
-<a class="btn btn-back" href="mi-vestido.html">← Volver a Mi Vestido</a>
-<a class="btn btn-new" href="nueva-idea.html">+ Nueva Idea</a>
-</div>
+<div class="header"><a class="btn btn-back" href="mi-vestido.html">← Volver a Mi Vestido</a><a class="btn btn-new" href="nueva-idea.html">+ Nueva Idea</a></div>
 <h1>Ideas del Vestido</h1>
-<div id="ideasGrid" class="ideas-grid"></div>
+<div id="grid" class="ideas-grid"></div>
 </section>
 <script>
-const grid=document.getElementById('ideasGrid');
-const ideas=JSON.parse(localStorage.getItem('ideasVestido')||'[]');
-if(ideas.length===0){grid.innerHTML=`<div class="card"><div class="content"><div class="titulo">Todavía no hay ideas guardadas</div><div class="comentario">Usá + Nueva Idea para comenzar el moodboard de Julieta.</div></div></div>`;}
-ideas.forEach(i=>{const card=document.createElement('a');card.href='idea.html';card.className='card';let media=i.imagen?`<img class="hero" src="${i.imagen}">`:`<div class="placeholder">Inspiración XV Julieta</div>`;card.innerHTML=`${media}<div class="content"><div class="titulo">${i.titulo}</div><div class="comentario">${i.comentario}</div><div class="fecha">${i.fecha}</div></div>`;grid.appendChild(card);});
+const supabase=window.supabase.createClient('https://gjdgrxjgtjnzvipfpsvw.supabase.co','sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M');
+async function cargar(){
+const grid=document.getElementById('grid');
+grid.innerHTML='<p>Cargando...</p>';
+const {data,error}=await supabase.from('ideas_vestido').select('*').order('id',{ascending:false});
+if(error){grid.innerHTML='<p>Error: '+error.message+'</p>';return;}
+if(!data||data.length===0){grid.innerHTML='<div class="card"><div class="content"><div class="titulo">Todavía no hay ideas guardadas</div></div></div>';return;}
+grid.innerHTML='';
+data.forEach(i=>{const a=document.createElement('a');a.className='card';a.href='idea.html?id='+i.id;a.innerHTML=(i.imagen?'<img src="'+i.imagen+'">':'<div class="placeholder">Inspiración XV Julieta</div>')+'<div class="content"><div class="titulo">'+(i.titulo||'Sin título')+'</div><div class="comentario">'+(i.comentario||'')+'</div><div class="fecha">'+(i.fecha||'')+'</div></div>';grid.appendChild(a);});}
+cargar();
 </script>
 </body>
 </html>
