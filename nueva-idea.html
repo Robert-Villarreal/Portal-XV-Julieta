@@ -4,32 +4,49 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nueva Idea | XV Julieta</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#FAF9F7 0%,#F5DCE8 45%,#DDECFB 100%);color:#4A4A4A}
-.idea-page{max-width:800px;margin:auto;padding:60px 20px}
-.volver{display:inline-block;margin-bottom:25px;text-decoration:none;color:#666;font-size:15px}
-.idea-card{background:#fff;border-radius:30px;padding:35px;box-shadow:0 8px 25px rgba(0,0,0,.05)}
-h1{margin-top:0;font-size:42px}.campo{margin-bottom:25px}label{display:block;margin-bottom:10px;font-weight:600}
-input[type=text],textarea{width:100%;box-sizing:border-box;border:1px solid #DDD;border-radius:20px;padding:15px;font-size:16px}
-textarea{min-height:180px;resize:vertical}
-.upload-box{border:2px dashed #D8D8D8;border-radius:20px;padding:30px;text-align:center;background:#FAFAFA}
-.preview{max-width:100%;max-height:250px;border-radius:16px;display:none;margin-top:15px}
-.actions{display:flex;gap:12px}.btn{border:none;border-radius:24px;padding:12px 24px;cursor:pointer;font-size:15px}.btn-guardar{background:#EAD9C6}.btn-cancelar{background:#F2F2F2}
+.idea-page{max-width:800px;margin:auto;padding:60px 20px}.card{background:#fff;border-radius:28px;padding:30px}
+input[type=text],textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:12px;box-sizing:border-box}
+textarea{min-height:140px}.campo{margin-bottom:20px}.btn{padding:12px 20px;border:none;border-radius:22px;cursor:pointer}
+.guardar{background:#EAD9C6}.volver{text-decoration:none;color:#666}
 </style>
-</head><body>
+</head>
+<body>
 <section class="idea-page">
-<a href="ideas-vestido.html" class="volver">← Volver a Ideas</a>
-<div class="idea-card">
+<a class="volver" href="ideas-vestido.html">← Volver a Ideas</a>
+<div class="card">
 <h1>Nueva Idea</h1>
-<div class="campo"><label>Título</label><input id="titulo" type="text" placeholder="Ej: Vestido champagne"></div>
-<div class="campo"><label>Foto (opcional)</label><div class="upload-box">Agregar imagen<br><br><input id="foto" type="file" accept="image/*"><img id="preview" class="preview"></div></div>
-<div class="campo"><label>Comentario</label><textarea id="comentario" placeholder="Escribí aquí la idea, comentario o referencia..."></textarea></div>
-<div class="actions"><button class="btn btn-guardar" onclick="guardarIdea()">Guardar</button><button class="btn btn-cancelar" onclick="location.href='ideas-vestido.html'">Cancelar</button></div>
-</div></section>
+<div class="campo"><label>Título</label><input id="titulo" type="text"></div>
+<div class="campo"><label>Foto</label><input id="foto" type="file" accept="image/*"></div>
+<div class="campo"><label>Comentario</label><textarea id="comentario"></textarea></div>
+<button class="btn guardar" onclick="guardarIdea()">Guardar</button>
+<div id="estado"></div>
+</div>
+</section>
 <script>
-let imagenBase64='';
-document.getElementById('foto').addEventListener('change',function(e){const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=function(){imagenBase64=r.result; const p=document.getElementById('preview'); p.src=imagenBase64; p.style.display='block';}; r.readAsDataURL(f);});
-function guardarIdea(){const titulo=document.getElementById('titulo').value.trim(); const comentario=document.getElementById('comentario').value.trim(); if(!titulo||!comentario){alert('Completá título y comentario'); return;} const ideas=JSON.parse(localStorage.getItem('ideasVestido')||'[]'); ideas.unshift({id:Date.now(),titulo:titulo,comentario:comentario,fecha:new Date().toLocaleDateString('es-AR'),imagen:imagenBase64}); localStorage.setItem('ideasVestido',JSON.stringify(ideas)); location.href='ideas-vestido.html';}
+const supabase = window.supabase.createClient(
+'https://gjdgrxjgtjnzvipfpsvw.supabase.co',
+'sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M'
+);
+async function guardarIdea(){
+const titulo=document.getElementById('titulo').value.trim();
+const comentario=document.getElementById('comentario').value.trim();
+const file=document.getElementById('foto').files[0];
+if(!titulo||!comentario){alert('Completá título y comentario');return;}
+let imagen='';
+if(file){
+ const nombre=Date.now()+'_'+file.name.replace(/\s+/g,'_');
+ const subida=await supabase.storage.from('Vestidos').upload(nombre,file);
+ if(subida.error){alert('Error al subir foto: '+subida.error.message);return;}
+ const pub=supabase.storage.from('Vestidos').getPublicUrl(nombre);
+ imagen=pub.data.publicUrl;
+}
+const {error}=await supabase.from('ideas_vestido').insert({titulo,comentario,fecha:new Date().toLocaleDateString('es-AR'),imagen});
+if(error){alert('Error al guardar: '+error.message);return;}
+document.getElementById('estado').innerHTML='✅ Idea guardada';
+setTimeout(()=>location.href='ideas-vestido.html',1000);
+}
 </script>
-</body>
-</html>
+</body></html>
