@@ -16,7 +16,10 @@
     <section class="vestido"><h1>Mi Vestido</h1><div class="grid"><div class="card"><h2>Ideas / Fotos / Notas</h2><p>Ideas guardadas: <span id="contadorIdeas">0</span></p><p>Última actualización: <span id="ultimaIdea">-</span>
     </p><a class="btn sec" href="ideas-vestido.html">Ver Ideas</a><a class="btn pri" href="nueva-idea.html">+ Nueva Idea</a></div>
       <div class="card"><h2>Reuniones</h2><p>Reuniones registradas: <span id="cantReuniones">0</span></p><p>Próxima reunión:</p><p><strong id="proxProveedor">-</strong></p><p id="proxFecha">-</p><p>Proveedor elegido:</p><p id="proveedorElegido">-</p><a class="btn sec" href="reuniones.html">Ver Reuniones</a>
-        <a class="btn pri" href="nueva-reunion.html">+ Nueva Reunión</a></div><div class="card"><h2>Cotizaciones</h2><p>Se alimentarán desde reuniones.</p></div></div></section>
+        <a class="btn pri" href="nueva-reunion.html">+ Nueva Reunión</a>
+      <a class="btn� Ver Agenda
+</a>
+      </div><div class="card"><h2>Cotizaciones</h2><p>Se alimentarán desde reuniones.</p></div></div></section>
     <script>const s=window.supabase.createClient('https://gjdgrxjgtjnzvipfpsvw.supabase.co','sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M');async function cargar(){let r=await s.from('ideas_vestido').select('*').order('id',{ascending:false});if(r.data){contadorIdeas.textContent=r.data.length;if(r.data.length)ultimaIdea.textContent=r.data[0].fecha||'-';}let q=await s.from('reuniones').select('*').order('fecha',{ascending:true});if(q.data){cantReuniones.textContent=q.data.length;if(q.data.length){proxProveedor.textContent=q.data[0].proveedor||'-';proxFecha.textContent=(q.data[0].fecha||'-')+' '+(q.data[0].hora||'');}const elegido=q.data.find(x=>x.elegido===true);if(elegido){proveedorElegido.innerHTML='<span class="star">⭐ '+elegido.proveedor+'</span>';}}}cargar();
         </script></body>
 </html>
