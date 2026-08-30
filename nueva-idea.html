@@ -26,7 +26,7 @@ textarea{min-height:140px}.campo{margin-bottom:20px}.btn{padding:12px 20px;borde
 </div>
 </section>
 <script>
-const supabaseClient = window.supabase.createClient(
+const supabase = window.supabase.createClient(
 'https://gjdgrxjgtjnzvipfpsvw.supabase.co',
 'sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M'
 );
@@ -38,12 +38,12 @@ if(!titulo||!comentario){alert('Completá título y comentario');return;}
 let imagen='';
 if(file){
  const nombre=Date.now()+'_'+file.name.replace(/\s+/g,'_');
- const subida=await supabaseClient.storage.from('Vestidos').upload(nombre,file);
+ const subida=await supabase.storage.from('Vestidos').upload(nombre,file);
  if(subida.error){alert('Error al subir foto: '+subida.error.message);return;}
- const pub=supabaseClient.storage.from('Vestidos').getPublicUrl(nombre);
+ const pub=supabase.storage.from('Vestidos').getPublicUrl(nombre);
  imagen=pub.data.publicUrl;
 }
-const {error}=await supabaseClient.from('ideas_vestido').insert({titulo,comentario,fecha:new Date().toLocaleDateString('es-AR'),imagen});
+const {error}=await supabase.from('ideas_vestido').insert({titulo,comentario,fecha:new Date().toLocaleDateString('es-AR'),imagen});
 if(error){alert('Error al guardar: '+error.message);return;}
 document.getElementById('estado').innerHTML='✅ Idea guardada';
 setTimeout(()=>location.href='ideas-vestido.html',1000);
