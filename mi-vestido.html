@@ -1,46 +1,19 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi Vestido | XV Julieta</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<style>
-body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#FAF9F7 0%,#F5DCE8 45%,#DDECFB 100%);color:#4A4A4A}
-.vestido{max-width:1400px;margin:auto;padding:60px 20px}.titulo{text-align:center;font-size:72px;margin:0 0 20px}.btn-volver{display:inline-block;padding:12px 22px;border-radius:24px;background:#F5F5F5;border:1px solid #DDD;color:#4A4A4A;text-decoration:none;margin-bottom:30px}.estado-header{text-align:center;margin-bottom:40px}.estado{display:inline-block;padding:12px 28px;border-radius:30px;background:#FFF4D6;color:#A66A00;font-size:20px}.ficha-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}.ficha-card{background:#fff;padding:28px;border-radius:28px;border:1px solid rgba(191,197,204,.2);box-shadow:0 8px 25px rgba(0,0,0,.05)}.acciones{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.btn{display:inline-block;padding:10px 18px;border-radius:22px;text-decoration:none;font-size:14px}.btn-sec{background:#F5F5F5;border:1px solid #DDD;color:#4A4A4A}.btn-pri{background:#EAD9C6;color:#4A4A4A}@media(max-width:900px){.ficha-grid{grid-template-columns:1fr}.titulo{font-size:52px}}
-</style>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Mi Vestido v4</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#FAF9F7,#F5DCE8,#DDECFB);color:#444}
+    .vestido{max-width:1400px;margin:auto;padding:50px 20px}
+    .card{background:#fff;border-radius:28px;padding:28px;box-shadow:0 8px 25px rgba(0,0,0,.05)}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .btn{display:inline-block;padding:10px 18px;border-radius:22px;text-decoration:none;margin:5px}
+    .sec{background:#f5f5f5;border:1px solid #ddd;color:#444}.pri{background:#ead9c6;color:#444}
+    .star{color:#b8860b;font-weight:bold}@media(max-width:900px){.grid{grid-template-columns:1fr}}</style>
 </head>
-<body>
-<section class="vestido">
-<a href="index.html#mi-look" class="btn-volver">← Volver a Mi Look</a>
-<h1 class="titulo">Mi Vestido</h1>
-<div class="estado-header">
-<div class="estado">En búsqueda</div>
-<p>Proveedor contratado: Sin definir</p>
-<p>Última actualización: <span id="ultimaActualizacion">-</span></p>
-</div>
-<div class="ficha-grid">
-<div class="ficha-card">
-<h2>Ideas / Fotos / Notas</h2>
-<p>Ideas guardadas: <span id="contadorIdeas">0</span></p>
-<p>Última actualización: <span id="ultimaActualizacionCard">-</span></p>
-<div class="acciones">
-<a href="ideas-vestido.html" class="btn btn-sec">Ver Ideas</a>
-<a href="nueva-idea.html" class="btn btn-pri">+ Nueva Idea</a>
-</div></div>
-<div class="ficha-card"><h2>Reuniones</h2><p>Reuniones registradas: 0</p><p>Próxima reunión: -</p></div>
-<div class="ficha-card"><h2>Cotizaciones</h2><p>Cotizaciones cargadas: 0</p><p>Proveedor elegido: -</p></div>
-<div class="ficha-card"><h2>Contratación</h2><p>Estado: Sin contratar</p><p>Contratado: $ 0</p></div>
-<div class="ficha-card"><h2>Movimientos</h2><p>Pagado: $ 0</p><p>Pendiente: $ 0</p></div>
-<div class="ficha-card"><h2>Historial</h2><p>Sin registros históricos.</p></div>
-</div></section>
-<script>
-const supabaseClient=window.supabase.createClient('https://gjdgrxjgtjnzvipfpsvw.supabase.co','sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M');
-async function cargarResumen(){
-const {data,error}=await supabaseClient.from('ideas_vestido').select('*').order('id',{ascending:false});
-if(error){console.error(error);return;}
-document.getElementById('contadorIdeas').textContent=data.length;
-if(data.length>0){document.getElementById('ultimaActualizacion').textContent=data[0].fecha||'-';document.getElementById('ultimaActualizacionCard').textContent=data[0].fecha||'-';}}
-cargarResumen();
-</script>
-</body></html>  
+  <body>
+    <section class="vestido"><h1>Mi Vestido</h1><div class="grid"><div class="card"><h2>Ideas / Fotos / Notas</h2><p>Ideas guardadas: <span id="contadorIdeas">0</span></p><p>Última actualización: <span id="ultimaIdea">-</span>
+    </p><a class="btn sec" href="ideas-vestido.html">Ver Ideas</a><a class="btn pri" href="nueva-idea.html">+ Nueva Idea</a></div>
+      <div class="card"><h2>Reuniones</h2><p>Reuniones registradas: <span id="cantReuniones">0</span></p><p>Próxima reunión:</p><p><strong id="proxProveedor">-</strong></p><p id="proxFecha">-</p><p>Proveedor elegido:</p><p id="proveedorElegido">-</p><a class="btn sec" href="reuniones.html">Ver Reuniones</a>
+        <a class="btn pri" href="nueva-reunion.html">+ Nueva Reunión</a></div><div class="card"><h2>Cotizaciones</h2><p>Se alimentarán desde reuniones.</p></div></div></section>
+    <script>const s=window.supabase.createClient('https://gjdgrxjgtjnzvipfpsvw.supabase.co','sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M');async function cargar(){let r=await s.from('ideas_vestido').select('*').order('id',{ascending:false});if(r.data){contadorIdeas.textContent=r.data.length;if(r.data.length)ultimaIdea.textContent=r.data[0].fecha||'-';}let q=await s.from('reuniones').select('*').order('fecha',{ascending:true});if(q.data){cantReuniones.textContent=q.data.length;if(q.data.length){proxProveedor.textContent=q.data[0].proveedor||'-';proxFecha.textContent=(q.data[0].fecha||'-')+' '+(q.data[0].hora||'');}const elegido=q.data.find(x=>x.elegido===true);if(elegido){proveedorElegido.innerHTML='<span class="star">⭐ '+elegido.proveedor+'</span>';}}}cargar();
+        </script></body>
+</html>
