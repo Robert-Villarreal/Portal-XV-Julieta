@@ -4,14 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mi Vestido | XV Julieta</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#FAF9F7 0%,#F5DCE8 45%,#DDECFB 100%);color:#4A4A4A}
-.vestido{max-width:1400px;margin:auto;padding:60px 20px}.titulo{text-align:center;font-size:72px;margin:0 0 20px}
-.btn-volver{display:inline-block;padding:12px 22px;border-radius:24px;background:#F5F5F5;border:1px solid #DDD;color:#4A4A4A;text-decoration:none;margin-bottom:30px}
-.btn-volver:hover{background:#ECECEC}.estado-header{text-align:center;margin-bottom:40px}.estado{display:inline-block;padding:12px 28px;border-radius:30px;background:#FFF4D6;color:#A66A00;font-size:20px}
-.ficha-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}.ficha-card{background:#fff;padding:28px;border-radius:28px;border:1px solid rgba(191,197,204,.2);box-shadow:0 8px 25px rgba(0,0,0,.05)}
-.acciones{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.btn{display:inline-block;padding:10px 18px;border-radius:22px;text-decoration:none;font-size:14px}.btn-sec{background:#F5F5F5;border:1px solid #DDD;color:#4A4A4A}.btn-pri{background:#EAD9C6;color:#4A4A4A}
-@media(max-width:900px){.ficha-grid{grid-template-columns:1fr}.titulo{font-size:52px}}
+.vestido{max-width:1400px;margin:auto;padding:60px 20px}.titulo{text-align:center;font-size:72px;margin:0 0 20px}.btn-volver{display:inline-block;padding:12px 22px;border-radius:24px;background:#F5F5F5;border:1px solid #DDD;color:#4A4A4A;text-decoration:none;margin-bottom:30px}.estado-header{text-align:center;margin-bottom:40px}.estado{display:inline-block;padding:12px 28px;border-radius:30px;background:#FFF4D6;color:#A66A00;font-size:20px}.ficha-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}.ficha-card{background:#fff;padding:28px;border-radius:28px;border:1px solid rgba(191,197,204,.2);box-shadow:0 8px 25px rgba(0,0,0,.05)}.acciones{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.btn{display:inline-block;padding:10px 18px;border-radius:22px;text-decoration:none;font-size:14px}.btn-sec{background:#F5F5F5;border:1px solid #DDD;color:#4A4A4A}.btn-pri{background:#EAD9C6;color:#4A4A4A}@media(max-width:900px){.ficha-grid{grid-template-columns:1fr}.titulo{font-size:52px}}
 </style>
 </head>
 <body>
@@ -31,19 +27,20 @@ body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#FA
 <div class="acciones">
 <a href="ideas-vestido.html" class="btn btn-sec">Ver Ideas</a>
 <a href="nueva-idea.html" class="btn btn-pri">+ Nueva Idea</a>
-</div>
-</div>
+</div></div>
 <div class="ficha-card"><h2>Reuniones</h2><p>Reuniones registradas: 0</p><p>Próxima reunión: -</p></div>
 <div class="ficha-card"><h2>Cotizaciones</h2><p>Cotizaciones cargadas: 0</p><p>Proveedor elegido: -</p></div>
 <div class="ficha-card"><h2>Contratación</h2><p>Estado: Sin contratar</p><p>Contratado: $ 0</p></div>
 <div class="ficha-card"><h2>Movimientos</h2><p>Pagado: $ 0</p><p>Pendiente: $ 0</p></div>
 <div class="ficha-card"><h2>Historial</h2><p>Sin registros históricos.</p></div>
-</div>
-</section>
+</div></section>
 <script>
-const ideas=JSON.parse(localStorage.getItem('ideasVestido')||'[]');
-document.getElementById('contadorIdeas').textContent=ideas.length;
-if(ideas.length>0){document.getElementById('ultimaActualizacion').textContent=ideas[0].fecha;document.getElementById('ultimaActualizacionCard').textContent=ideas[0].fecha;}
+const supabaseClient=window.supabase.createClient('https://gjdgrxjgtjnzvipfpsvw.supabase.co','sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M');
+async function cargarResumen(){
+const {data,error}=await supabaseClient.from('ideas_vestido').select('*').order('id',{ascending:false});
+if(error){console.error(error);return;}
+document.getElementById('contadorIdeas').textContent=data.length;
+if(data.length>0){document.getElementById('ultimaActualizacion').textContent=data[0].fecha||'-';document.getElementById('ultimaActualizacionCard').textContent=data[0].fecha||'-';}}
+cargarResumen();
 </script>
-</body>
-</html>
+</body></html>  
