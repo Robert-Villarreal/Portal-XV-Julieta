@@ -20,11 +20,11 @@ h1{text-align:center;font-size:64px;font-weight:300;margin:20px 0 40px}.btn{disp
 <div id="grid" class="ideas-grid"></div>
 </section>
 <script>
-const supabase=window.supabase.createClient('https://gjdgrxjgtjnzvipfpsvw.supabase.co','sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M');
+const supabaseClient=window.supabase.createClient('https://gjdgrxjgtjnzvipfpsvw.supabase.co','sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M');
 async function cargar(){
 const grid=document.getElementById('grid');
 grid.innerHTML='<p>Cargando...</p>';
-const {data,error}=await supabase.from('ideas_vestido').select('*').order('id',{ascending:false});
+const {data,error}=await supabaseClient.from('ideas_vestido').select('*').order('id',{ascending:false});
 if(error){grid.innerHTML='<p>Error: '+error.message+'</p>';return;}
 if(!data||data.length===0){grid.innerHTML='<div class="card"><div class="content"><div class="titulo">Todavía no hay ideas guardadas</div></div></div>';return;}
 grid.innerHTML='';
