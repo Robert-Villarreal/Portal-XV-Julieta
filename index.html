@@ -1,188 +1,68 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>XV Julieta</title>
-
-<link rel="ts.googleapis.com
-<link relonts.gstatic.com
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&errat:wght@300;400;500;600&display=swap
+<title>Test XV Julieta</title>
 
 <style>
 
-:root{
- --marfil:#FAF9F7;
- --rosa:#F5DCE8;
- --celeste:#DDECFB;
- --oro:#D4AF37;
- --oroClaro:#F5E19A;
- --grafito:#4A4A4A;
-}
-
-*{
- margin:0;
- padding:0;
- box-sizing:border-box;
-}
-
 body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
 
- font-family:'Montserrat',sans-serif;
+    background:
+    linear-gradient(
+        180deg,
+        #FAF9F7 0%,
+        #F5DCE8 50%,
+        #DDECFB 100%
+    );
 
- background:
- linear-gradient(
- 180deg,
- #FAF9F7 0%,
- #F5DCE8 45%,
- #DDECFB 100%
- );
-
- min-height:100vh;
-
- color:var(--grafito);
-}
-
-.hero{
-
- min-height:100vh;
-
- display:flex;
-
- justify-content:center;
-
- align-items:center;
-
- text-align:center;
-
- padding:40px 20px;
-
- position:relative;
-
- overflow:hidden;
-}
-
-.hero::before{
-
- content:"JV";
-
- position:absolute;
-
- right:5%;
- bottom:2%;
-
- font-size:220px;
-
- font-family:'Playfair Display',serif;
-
- color:rgba(191,197,204,.15);
-}
-
-.hero-content{
-
- max-width:900px;
-
- position:relative;
-
- z-index:2;
+    font-family:Arial,sans-serif;
 }
 
 .sello{
 
- width:300px;
+    width:300px;
 
- max-width:85%;
-
- display:block;
-
- margin:auto;
-
- filter:
- drop-shadow(
- 0 25px 40px rgba(0,0,0,.18)
- );
+    filter:
+    drop-shadow(
+        0 20px 40px rgba(0,0,0,.18)
+    );
 }
 
-.titulo{
+h1{
 
- font-family:'Playfair Display',serif;
+    font-size:72px;
 
- font-size:90px;
+    margin-top:20px;
 
- margin-top:20px;
-
- letter-spacing:2px;
+    color:#4A4A4A;
 }
 
 .fecha{
 
- margin-top:15px;
+    color:#D4AF37;
 
- color:var(--oro);
+    font-weight:bold;
 
- letter-spacing:5px;
-
- font-weight:700;
+    letter-spacing:4px;
 }
 
 .frase{
 
- margin-top:30px;
+    color:#666;
 
- font-size:26px;
+    margin-top:20px;
 
- color:#666;
-}
-
-.boton{
-
- display:inline-block;
-
- margin-top:45px;
-
- text-decoration:none;
-
- padding:18px 52px;
-
- border-radius:50px;
-
- background:
- linear-gradient(
- 90deg,
- var(--oro),
- var(--oroClaro)
- );
-
- color:#5A4712;
-
- font-weight:700;
-
- box-shadow:
- 0 10px 25px rgba(212,175,55,.35);
-}
-
-.boton:hover{
-
- transform:translateY(-2px);
-}
-
-@media(max-width:768px){
-
- .titulo{
-  font-size:54px;
- }
-
- .frase{
-  font-size:20px;
- }
-
- .hero::before{
-  font-size:120px;
- }
+    font-size:24px;
 }
 
 </style>
@@ -191,37 +71,24 @@ body{
 
 <body>
 
-<section class="hero">
-
-<div class="hero-content">
+<div>
 
 <img
- src="sello-jv.png"
- class="sello"
- alt="Sello JV">
+src="sello-jv.png"
+class="sello"
+alt="Sello JV">
 
-<h1 class="titulo">
- Julieta
-</h1>
+<h1>Julieta</h1>
 
 <div class="fecha">
- XV • 27 DICIEMBRE 2026
+XV · 27 Diciembre 2026
 </div>
 
 <div class="frase">
- Camino hacia un día único
+Camino hacia un día único
 </div>
 
-#universo
- Explorar
-</a>
-
 </div>
-
-</section>
-
-<section id="universo" style="height:500px;">
-</section>
 
 </body>
 </html>
