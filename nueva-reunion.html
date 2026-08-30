@@ -1,1 +1,52 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nueva Reunión | XV Julieta</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#FAF9F7 0%,#F5DCE8 45%,#DDECFB 100%);color:#4A4A4A}
+.page{max-width:900px;margin:auto;padding:40px 20px}.card{background:#fff;border-radius:28px;padding:30px;box-shadow:0 8px 25px rgba(0,0,0,.05)}
+label{font-weight:600;display:block;margin-bottom:6px}input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:12px;box-sizing:border-box}
+textarea{min-height:120px}.campo{margin-bottom:18px}.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}.btn{padding:12px 22px;border:none;border-radius:24px;cursor:pointer}.save{background:#EAD9C6}.back{text-decoration:none;color:#555}
+@media(max-width:700px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="page">
+<a class="back" href="mi-vestido.html">← Volver a Mi Vestido</a>
+<div class="card">
+<h1>Nueva Reunión</h1>
+<div class="campo"><label>Categoría</label><select id="categoria"><option>Vestido</option><option>Foto y Video</option><option>Maquillaje y Peinado</option><option>Salón / Ambientación</option><option>Catering y Bebidas</option><option>Shows / Cotillón</option><option>Otros</option></select></div>
+<div class="campo"><label>Proveedor</label><input id="proveedor"></div>
+<div class="row">
+<div class="campo"><label>Fecha</label><input id="fecha" type="date"></div>
+<div class="campo"><label>Hora</label><input id="hora" type="time"></div>
+</div>
+<div class="campo"><label>Lugar</label><input id="lugar"></div>
+<div class="campo"><label>Contacto</label><input id="contacto"></div>
+<div class="campo"><label>Observaciones</label><textarea id="observaciones"></textarea></div>
+<div class="row">
+<div class="campo"><label>Cotización</label><input id="cotizacion" type="number"></div>
+<div class="campo"><label>Prioridad</label><select id="prioridad"><option>Alta</option><option>Media</option><option>Baja</option></select></div>
+</div>
+<div class="row">
+<div class="campo"><label>Estado</label><select id="estado"><option>Pendiente</option><option>Entrevistado</option><option>En evaluación</option><option>Descartado</option><option>Contratado</option></select></div>
+<div class="campo"><label><input id="elegido" type="checkbox"> ⭐ Proveedor seleccionado</label></div>
+</div>
+<button class="btn save" onclick="guardarReunion()">Guardar Reunión</button>
+<div id="msg"></div>
+</div></div>
+<script>
+const supabaseClient=window.supabase.createClient('https://gjdgrxjgtjnzvipfpsvw.supabase.co','sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M');
+async function guardarReunion(){
+const datos={categoria:categoria.value,proveedor:proveedor.value,fecha:fecha.value,hora:hora.value,lugar:lugar.value,contacto:contacto.value,observaciones:observaciones.value,cotizacion:cotizacion.value||null,estado:estado.value,elegido:elegido.checked,prioridad:prioridad.value};
+const {error}=await supabaseClient.from('reuniones').insert(datos);
+if(error){alert('Error: '+error.message);return;}
+document.getElementById('msg').innerHTML='✅ Reunión guardada';
+setTimeout(()=>location.href='reuniones.html',1000);
+}
+</script>
+</body>
+</html>
