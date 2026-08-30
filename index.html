@@ -63,7 +63,66 @@ h1{
 
     font-family:'Playfair Display',serif;
 }
+.agenda-home{
 
+    padding:100px 20px;
+
+    text-align:center;
+}
+
+.agenda-home h2{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:48px;
+
+    margin-bottom:40px;
+}
+
+.agenda-card{
+
+    max-width:800px;
+
+    margin:auto;
+
+    background:white;
+
+    border-radius:32px;
+
+    padding:40px;
+
+    box-shadow:
+    0 12px 30px rgba(0,0,0,.05);
+}
+
+.small-title{
+
+    letter-spacing:4px;
+
+    color:#999;
+
+    font-size:12px;
+
+    margin-bottom:20px;
+}
+
+.proveedor{
+
+    font-size:42px;
+
+    font-family:'Playfair Display',serif;
+
+    color:#7A1520;
+
+    margin-bottom:15px;
+}
+
+.fecha-reunion{
+
+    color:#666;
+
+    margin-bottom:30px;
+}
 .contador p{
 
     letter-spacing:5px;
@@ -119,12 +178,63 @@ XV · 27 Diciembre 2026
     </p>
 
 </section>
-    
+    <section class="agenda-home">
+
+    <h2>
+        Agenda Destacada
+    </h2>
+
+    <div class="agenda-card">
+
+        <div class="small-title">
+            PRÓXIMA REUNIÓN
+        </div>
+
+        <div class="proveedor">
+            Trianna
+        </div>
+
+        <div class="fecha-reunion">
+            01 Septiembre 2026 · 15:00 hs
+        </div>
+
+        <a
+            href="agenda.html"
+            class="boton">
+
+            EXPLORAR AGENDA
+
+        </a>
+
+    </div>
+
+</section>
 <div class="frase">
 Camino hacia un día único
 </div>
 
 </div>
+<script>
 
+const fechaEvento =
+new Date("2026-12-27T13:00:00");
+
+const hoy =
+new Date();
+
+const diferencia =
+fechaEvento - hoy;
+
+const dias =
+Math.ceil(
+diferencia /
+(1000*60*60*24)
+);
+
+document.getElementById(
+"dias"
+).innerHTML = dias;
+
+</script>
 </body>
 </html>
