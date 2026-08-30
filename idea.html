@@ -1,7 +1,56 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Idea | XV Julieta</title><style>body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#FAF9F7 0%,#F5DCE8 45%,#DDECFB 100%);color:#4A4A4A}.page{max-width:900px;margin:auto;padding:40px 20px}
-    .card{background:#fff;border-radius:28px;padding:30px;box-shadow:0 8px 25px rgba(0,0,0,.05)}.btn{display:inline-block;text-decoration:none;padding:12px 20px;border-radius:24px;border:none;cursor:pointer;margin-right:10px}
-    .back{background:#F5F5F5;color:#444}.edit{background:#EAD9C6}.delete{background:#f7d6d6}
-    .save{background:#d8ead3}img{max-width:100%;border-radius:20px;margin:15px 0}input,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:14px;box-sizing:border-box}textarea{min-height:140px}</style></head><body>
-        <div class="page"><a class="btn back" href="ideas-vestido.html">← Volver a Ideas</a><div class="card"><h1 id="tituloView"></h1><img id="foto" style="display:none"><p id="fecha"></p><p id="comentarioView"></p><div id="viewMode"><button class="btn edit" onclick="editar()">Editar</button><button class="btn delete" onclick="eliminarIdea()">Eliminar</button></div><div id="editMode" style="display:none"><label>Título</label>
-            <input id="titulo"><br><br><label>Comentario</label><textarea id="comentario"></textarea><br><br><button class="btn save" onclick="guardarCambios()">Guardar cambios</button></div></div></div><script>const p=new URLSearchParams(location.search);const id=Number(p.get('id'));let ideas=JSON.parse(localStorage.getItem('ideasVestido')||'[]');let idea=ideas.find(x=>x.id===id)||ideas[0];function render(){if(!idea)return;tituloView.textContent=idea.titulo;comentarioView.textContent=idea.comentario;fecha.textContent=idea.fecha;if(idea.imagen){foto.src=idea.imagen;foto.style.display='block';}}function editar(){editMode.style.display='block';viewMode.style.display='none';titulo.value=idea.titulo;comentario.value=idea.comentario;}function guardarCambios(){idea.titulo=titulo.value;idea.comentario=comentario.value;ideas=ideas.map(i=>i.id===idea.id?idea:i);localStorage.setItem('ideasVestido',JSON.stringify(ideas));location.reload();}function eliminarIdea(){if(confirm('¿Eliminar esta idea?')){ideas=ideas.filter(i=>i.id!==idea.id);localStorage.setItem('ideasVestido',JSON.stringify(ideas));location.href='ideas-vestido.html';}}render();</script></body></html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Idea | XV Julieta</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#FAF9F7 0%,#F5DCE8 45%,#DDECFB 100%);color:#4A4A4A}
+.page{max-width:900px;margin:auto;padding:40px 20px}.card{background:#fff;border-radius:28px;padding:30px;box-shadow:0 8px 25px rgba(0,0,0,.05)}
+.btn{display:inline-block;padding:12px 20px;border:none;border-radius:24px;cursor:pointer;text-decoration:none;margin-right:10px;margin-top:10px}
+.back{background:#F5F5F5;color:#444}.edit{background:#EAD9C6}.delete{background:#F7D6D6}.save{background:#D8EAD3}
+img{width:100%;max-height:500px;object-fit:cover;border-radius:20px;margin:20px 0}
+input,textarea{width:100%;padding:12px;border:1px solid #DDD;border-radius:14px;box-sizing:border-box}textarea{min-height:160px}
+</style>
+</head>
+<body>
+<div class="page">
+<a class="btn back" href="ideas-vestido.html">← Volver a Ideas</a>
+<div class="card">
+<h1 id="tituloView">Cargando...</h1>
+<img id="foto" style="display:none;">
+<p id="fecha"></p>
+<p id="comentarioView"></p>
+<div id="viewMode">
+<button class="btn edit" onclick="editar()">Editar</button>
+<button class="btn delete" onclick="eliminarIdea()">Eliminar</button>
+</div>
+<div id="editMode" style="display:none;">
+<label>Título</label><input id="titulo">
+<br><br>
+<label>Comentario</label><textarea id="comentario"></textarea>
+<br><br>
+<button class="btn save" onclick="guardarCambios()">Guardar cambios</button>
+</div>
+</div></div>
+<script>
+const supabaseClient=window.supabase.createClient('https://gjdgrxjgtjnzvipfpsvw.supabase.co','sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M');
+const params=new URLSearchParams(window.location.search);
+const ideaId=Number(params.get('id'));
+let ideaActual=null;
+async function cargarIdea(){
+const {data,error}=await supabaseClient.from('ideas_vestido').select('*').eq('id',ideaId).single();
+if(error){document.getElementById('tituloView').textContent='Idea no encontrada';return;}
+ideaActual=data;
+document.getElementById('tituloView').textContent=data.titulo||'';
+document.getElementById('comentarioView').textContent=data.comentario||'';
+document.getElementById('fecha').textContent=data.fecha||'';
+if(data.imagen){const f=document.getElementById('foto');f.src=data.imagen;f.style.display='block';}
+}
+function editar(){document.getElementById('editMode').style.display='block';document.getElementById('viewMode').style.display='none';document.getElementById('titulo').value=ideaActual.titulo||'';document.getElementById('comentario').value=ideaActual.comentario||'';}
+async function guardarCambios(){const titulo=document.getElementById('titulo').value;const comentario=document.getElementById('comentario').value;const {error}=await supabaseClient.from('ideas_vestido').update({titulo:titulo,comentario:comentario}).eq('id',ideaId);if(error){alert(error.message);return;}location.reload();}
+async function eliminarIdea(){if(!confirm('¿Eliminar esta idea?')) return; const {error}=await supabaseClient.from('ideas_vestido').delete().eq('id',ideaId); if(error){alert(error.message);return;} location.href='ideas-vestido.html';}
+cargarIdea();
+</script>
+</body></html>
