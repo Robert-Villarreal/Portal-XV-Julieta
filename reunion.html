@@ -1,19 +1,39 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Reuniones XV</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-    
-  </script>
-  <style>body{margin:0;font-family:Arial;background:linear-gradient(180deg,#FAF9F7,#F5DCE8,#DDECFB);color:#444}
-    .page{max-width:1400px;margin:auto;padding:40px 20px}.top{display:flex;justify-content:space-between;flex-wrap:wrap}
-    .btn{text-decoration:none;padding:12px 22px;border-radius:24px}.back{background:#fff;border:1px solid #ddd;color:#555}
-    .new{background:#ead9c6;color:#444}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-top:30px}
-    .card{background:#fff;border-radius:24px;padding:22px;text-decoration:none;color:#444;box-shadow:0 8px 25px rgba(0,0,0,.05)}
-    .selected{border:2px solid #d4af37;background:#fffdf3}
-    .badge{color:#b8860b;font-weight:bold}.meta{color:#777;font-size:14px}</style></head><body>
-      <div class="page"><div class="top"><a class="btn back" href="mi-vestido.html">← Volver</a><a class="btn new" href="nueva-reunion.html">+ Nueva Reunión</a></div><h1>Reuniones</h1><div id="grid" class="grid"></div>
-      </div><script>const supabaseClient=window.supabase.createClient('https://gjdgrxjgtjnzvipfpsvw.supabase.co','sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M');async function cargar(){const {data,error}=await supabaseClient.from('reuniones').select('*')
-  .order('fecha',{ascending:true});const g=document.getElementById('grid');if(error){g.innerHTML='Error: '+error.message;return;}if(!data.length){g.innerHTML='<p>No hay reuniones registradas.</p>';return;}data.forEach(r=>{const a=document.createElement('a');
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            a.href='reunion.html?id='+r.id;a.className='card'+(r.elegido?' selected':'');a.innerHTML=(r.elegido?'<div class="badge">⭐ PROVEEDOR SELECCIONADO</div>':'')+'<h3>'+ (r.proveedor||'Sin proveedor') +'</h3><p><strong>'+ (r.categoria||'') +'</strong></p><p>'+ (r.fecha||'') +' '+ (r.hora||'') +'</p><p>Estado: '+ (r.estado||'-') +'</p><p>Prioridad: '+ (r.prioridad||'-') +'</p><p>Cotización: $'+ (r.cotizacion||0) +'</p><div class="meta">Click para abrir</div>';
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            g.appendChild(a);});}cargar();</script></body>
-</html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reunión | XV Julieta</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#FAF9F7,#F5DCE8,#DDECFB);color:#444}
+.page{max-width:900px;margin:auto;padding:40px 20px}.card{background:#fff;border-radius:28px;padding:30px;box-shadow:0 8px 25px rgba(0,0,0,.05)}
+input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:12px;box-sizing:border-box}
+textarea{min-height:120px}.campo{margin-bottom:16px}.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.btn{padding:12px 20px;border:none;border-radius:22px;cursor:pointer;margin:4px}.save{background:#D8EAD3}.delete{background:#F7D6D6}.star{background:#FFF4D6}.back{background:#F5F5F5}
+@media(max-width:700px){.row{grid-template-columns:1fr}}
+</style></head><body><div class="page"><div class="card">
+<h1>Detalle de Reunión</h1>
+<button class="btn back" onclick="location.href='reuniones.html'">← Volver</button>
+<div class="campo"><label>Categoría</label><select id="categoria"><option>Vestido</option><option>Foto y Video</option><option>Maquillaje y Peinado</option><option>Salón / Ambientación</option><option>Catering y Bebidas</option><option>Shows / Cotillón</option><option>Otros</option></select></div>
+<div class="campo"><label>Proveedor</label><input id="proveedor"></div>
+<div class="row"><div class="campo"><label>Fecha</label><input id="fecha" type="date"></div><div class="campo"><label>Hora</label><input id="hora" type="time"></div></div>
+<div class="campo"><label>Lugar</label><input id="lugar"></div>
+<div class="campo"><label>Contacto</label><input id="contacto"></div>
+<div class="campo"><label>Observaciones</label><textarea id="observaciones"></textarea></div>
+<div class="row"><div class="campo"><label>Cotización</label><input id="cotizacion" type="number"></div><div class="campo"><label>Prioridad</label><select id="prioridad"><option>Alta</option><option>Media</option><option>Baja</option></select></div></div>
+<div class="row"><div class="campo"><label>Estado</label><select id="estado"><option>Pendiente</option><option>Entrevistado</option><option>En evaluación</option><option>Descartado</option><option>Contratado</option></select></div><div class="campo"><label><input id="elegido" type="checkbox"> ⭐ Proveedor seleccionado</label></div></div>
+<button class="btn save" onclick="guardar()">Guardar cambios</button>
+<button class="btn star" onclick="seleccionar()">⭐ Seleccionar proveedor</button>
+<button class="btn delete" onclick="eliminar()">Eliminar</button>
+</div></div>
+<script>
+const supabaseClient=window.supabase.createClient('https://gjdgrxjgtjnzvipfpsvw.supabase.co','sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M');
+const id=new URLSearchParams(location.search).get('id');
+let actual=null;
+async function cargar(){const {data}=await supabaseClient.from('reuniones').select('*').eq('id',id).single(); if(!data)return; actual=data; for(const k in data){const e=document.getElementById(k); if(e){ if(e.type==='checkbox') e.checked=data[k]; else e.value=data[k]??''; }}}
+async function guardar(){const datos={categoria:categoria.value,proveedor:proveedor.value,fecha:fecha.value,hora:hora.value,lugar:lugar.value,contacto:contacto.value,observaciones:observaciones.value,cotizacion:cotizacion.value||null,estado:estado.value,prioridad:prioridad.value,elegido:elegido.checked}; const {error}=await supabaseClient.from('reuniones').update(datos).eq('id',id); if(error) return alert(error.message); alert('Cambios guardados');}
+async function seleccionar(){if(!actual)return; await supabaseClient.from('reuniones').update({elegido:false}).eq('categoria',categoria.value); await supabaseClient.from('reuniones').update({elegido:true,estado:'Contratado'}).eq('id',id); alert('Proveedor seleccionado'); location.reload();}
+async function eliminar(){if(!confirm('¿Eliminar reunión?')) return; const {error}=await supabaseClient.from('reuniones').delete().eq('id',id); if(error) return alert(error.message); location.href='reuniones.html';}
+cargar();
+</script></body></html>
