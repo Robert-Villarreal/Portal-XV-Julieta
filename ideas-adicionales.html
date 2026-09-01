@@ -146,6 +146,9 @@ h1{
 
     background:
     rgba(255,255,255,.80);
+    
+    border-left:
+4px solid #D4AF37;
 
     backdrop-filter:blur(10px);
 
@@ -175,6 +178,11 @@ h1{
     background:#F5F5F5;
 
     color:#666;
+    background:#F7F1D6;
+ 
+color:#9B7A0A;
+ 
+font-weight:600;
 
     font-size:14px;
 }
@@ -294,7 +302,13 @@ h1{
 
         <button
             class="btn"
-            onclick="guardarIdea()">
+            onclick="guardarIdea()document
+.getElementById("titulo")
+.value = "";
+
+document
+.getElementById("observaciones")
+.value = "";">
 
             Guardar Idea
 
@@ -344,7 +358,14 @@ function guardarIdea(){
         observaciones,
         fecha:
         new Date()
-        .toLocaleDateString("es-AR")
+        .toLocaleDateString(
+    "es-AR",
+    {
+        day:"2-digit",
+        month:"long",
+        year:"numeric"
+    }
+)
     };
 
     let ideas =
