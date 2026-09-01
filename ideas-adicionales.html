@@ -300,19 +300,14 @@ font-weight:600;
             id="observaciones"
             rows="4"></textarea>
 
-        <button
-            class="btn"
-            onclick="guardarIdea()document
-.getElementById("titulo")
-.value = "";
+            <button
+    class="btn"
+    onclick="guardarIdea()">
 
-document
-.getElementById("observaciones")
-.value = "";">
+    Guardar Idea
 
-            Guardar Idea
+</button>
 
-        </button>
 
     </div>
 
@@ -383,14 +378,12 @@ function guardarIdea(){
     );
 
     cargarIdeas();
+document.getElementById("titulo").value = "";
 
-    document
-        .getElementById("formulario")
-        .reset();
+document.getElementById("observaciones").value = "";
 
-    document
-        .getElementById("formulario")
-        .style.display = "none";
+document.getElementById("formulario").style.display = "none";
+    
 }
 
 function cargarIdeas(){
