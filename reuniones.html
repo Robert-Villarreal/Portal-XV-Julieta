@@ -89,15 +89,24 @@ function fechaHoraBonita(fechaHora){
   .order('fecha',{ascending:true});const g=document.getElementById('grid');if(error){g.innerHTML='Error: '+error.message;return;}if(!data.length){g.innerHTML='<p>No hay reuniones registradas.</p>';return;}
                       data.forEach(r=>{const a=document.createElement('a');
                       a.href='reunion.html?id='+r.id;a.className='card'+(r.elegido?' selected':'');
-                    a.innerHTML=(r.elegido
-                                 ?'<div class="badge">⭐ PROVEEDOR SELECCIONADO</div>':'')
-                      +'<h3>'+ (r.proveedor||'Sin proveedor') +'</h3>'
-                      +<p><strong>'+ (r.categoria||'') +'</strong></p>'
-                      +'<p>'+ fechaHoraBonita(r.fecha, r.hora) +'</p>'
-                      +'<p>Estado: '+ (r.estado||'-') +'</p>'
-                      +'<p>Prioridad: '+ (r.prioridad||'-') +'</p>'
-                      +<p>Cotización: $'+ (r.cotizacion||0) +'</p>'
-                      +'<div class="meta">Click para abrir</div>';
+                   a.innerHTML =
+(r.elegido
+ ? '<div class="badge">⭐ PROVEEDOR SELECCIONADO</div>'
+ : '')
++
+'<h3>' + (r.proveedor || 'Sin proveedor') + '</h3>'
++
+'<p><strong>' + (r.categoria || '') + '</strong></p>'
++
+'<p>' + fechaHoraBonita(r.fecha + ' ' + r.hora) + '</p>'
++
+'<p>Estado: ' + (r.estado || '-') + '</p>'
++
+'<p>Prioridad: ' + (r.prioridad || '-') + '</p>'
++
+'<p>Cotización: $' + (r.cotizacion || 0) + '</p>'
++
+'<div class="meta">Click para abrir</div>';
                                        g.appendChild(a);});}cargar();
       </script>
   </body>
