@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gestión XV · Portal Julieta</title>
+
+<style>
+
+body{
+
+    margin:0;
+    font-family:Arial,sans-serif;
+
+    background:
+    linear-gradient(
+        180deg,
+        #FAF9F7 0%,
+        #F5DCE8 45%,
+        #DDECFB 100%
+    );
+
+    color:#4A4A4A;
+}
+
+.container{
+
+    max-width:1200px;
+    margin:auto;
+    padding:50px 20px 100px;
+}
+
+.volver{
+
+    text-decoration:none;
+    color:#666;
+    display:inline-block;
+    margin-bottom:30px;
+}
+
+h1{
+
+    text-align:center;
+    font-size:72px;
+    margin-bottom:15px;
+}
+
+.intro{
+
+    text-align:center;
+    color:#777;
+    max-width:700px;
+    margin:0 auto 60px;
+    line-height:1.8;
+}
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
+    gap:25px;
+}
+
+.card{
+
+    text-decoration:none;
+
+    color:#4A4A4A;
+
+    background:
+    rgba(255,255,255,.80);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:34px;
+
+    padding:40px;
+
+    box-shadow:
+    0 12px 30px rgba(0,0,0,.05);
+
+    transition:.3s;
+
+    text-align:center;
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+}
+
+.card h2{
+
+    margin-bottom:25px;
+    font-size:34px;
+}
+
+.card p{
+
+    color:#777;
+    line-height:1.8;
+}
+
+.cta{
+
+    display:block;
+
+    margin-top:25px;
+
+    color:#D4AF37;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+}
+
+@media(max-width:768px){
+
+    h1{
+
+        font-size:48px;
+    }
+
+    .grid{
+
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <a
+       href="index.html"
+       class="volver">
+
+       ← Volver al Portal
+
+    </a>
+
+    <h1>
+        Gestión XV
+    </h1>
+
+    <p class="intro">
+
+        Administración financiera, presupuestos,
+        pagos y seguimiento económico del proyecto.
+
+    </p>
+
+    <div class="grid">
+
+        <a
+           href="cotizaciones.html"
+           class="card">
+
+            <h2>
+                Cotizaciones
+            </h2>
+
+            <p>
+
+                Monedas<br>
+                Tipo de Cambio<br>
+                Comparativas<br>
+                Proveedores
+
+            </p>
+
+            <span class="cta">
+                EXPLORAR
+            </span>
+
+        </a>
+
+        presupuesto.html
+
+            <h2>
+                Presupuesto
+            </h2>
+
+            <p>
+
+                Comprometido<br>
+                Pendiente<br>
+                Aprobado
+
+            </p>
+
+            <span class="cta">
+                EXPLORAR
+            </span>
+
+        </a>
+
+        pagos.html
+
+            <h2>
+                Pagos
+            </h2>
+
+            <p>
+
+                Pagado<br>
+                Saldo<br>
+                Vencimientos
+
+            </p>
+
+            <span class="cta">
+                EXPLORAR
+            </span>
+
+        </a>
+
+        dashboard-financiero.html
+
+            <h2>
+                Dashboard
+            </h2>
+
+            <p>
+
+                ARS<br>
+                USD<br>
+                Tipo de Cambio<br>
+                Equivalente Total
+
+            </p>
+
+            <span class="cta">
+                EXPLORAR
+            </span>
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
