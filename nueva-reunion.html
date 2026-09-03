@@ -41,7 +41,20 @@ textarea{min-height:120px}.campo{margin-bottom:18px}.row{display:grid;grid-templ
 <script>
 const supabaseClient=window.supabase.createClient('https://gjdgrxjgtjnzvipfpsvw.supabase.co','sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M');
 async function guardarReunion(){
-const datos={categoria:categoria.value,proveedor:proveedor.value,fecha:fecha.value,hora:hora.value,lugar:lugar.value,contacto:contacto.value,observaciones:observaciones.value,cotizacion:cotizacion.value||null,estado:estado.value,elegido:elegido.checked,prioridad:prioridad.value};
+const datos={
+    categoria:categoria.value,
+    proveedor:proveedor.value,
+    fecha:fecha.value,
+    hora:hora.value,
+    lugar:lugar.value,
+    contacto:contacto.value,
+    observaciones:observaciones.value,
+    cotizacion:cotizacion.value||null,
+    moneda:moneda.value,
+    estado:estado.value,
+    elegido:elegido.checked,
+    prioridad:prioridad.value
+};
 const {error}=await supabaseClient.from('reuniones').insert(datos);
 if(error){alert('Error: '+error.message);return;}
 document.getElementById('msg').innerHTML='✅ Reunión guardada';
