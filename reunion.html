@@ -30,10 +30,10 @@ textarea{min-height:120px}.campo{margin-bottom:16px}.row{display:grid;grid-templ
         <input
             id="cotizacion"
             type="number">
+</div>
+
 
     </div>
-
-</div>
 
 <div class="row">
 
@@ -81,7 +81,37 @@ const supabaseClient=window.supabase.createClient('https://gjdgrxjgtjnzvipfpsvw.
 const id=new URLSearchParams(location.search).get('id');
 let actual=null;
 async function cargar(){const {data}=await supabaseClient.from('reuniones').select('*').eq('id',id).single(); if(!data)return; actual=data; for(const k in data){const e=document.getElementById(k); if(e){ if(e.type==='checkbox') e.checked=data[k]; else e.value=data[k]??''; }}}
-async function guardar(){const datos={categoria:categoria.value,proveedor:proveedor.value,fecha:fecha.value,hora:hora.value,lugar:lugar.value,contacto:contacto.value,observaciones:observaciones.value,cotizacion:cotizacion.value,moneda.value = r.moneda || 'ARS';||null,estado:estado.value,prioridad:prioridad.value,elegido:elegido.checked}; const {error}=await supabaseClient.from('reuniones').update(datos).eq('id',id); if(error) return alert(error.message); alert('Cambios guardados');}
+async function guardar(){
+
+    const datos={
+
+        categoria:categoria.value,
+        proveedor:proveedor.value,
+        fecha:fecha.value,
+        hora:hora.value,
+        lugar:lugar.value,
+        contacto:contacto.value,
+        observaciones:observaciones.value,
+
+        cotizacion:cotizacion.value || null,
+        moneda:moneda.value,
+
+        estado:estado.value,
+        prioridad:prioridad.value,
+        elegido:elegido.checked
+
+    };
+
+    const {error}=await supabaseClient
+        .from('reuniones')
+        .update(datos)
+        .eq('id',id);
+
+    if(error)
+        return alert(error.message);
+
+    alert('Cambios guardados');
+}
 async function seleccionar(){if(!actual)return; await supabaseClient.from('reuniones').update({elegido:false}).eq('categoria',categoria.value); await supabaseClient.from('reuniones').update({elegido:true,estado:'Contratado'}).eq('id',id); alert('Proveedor seleccionado'); location.reload();}
 async function eliminar(){if(!confirm('¿Eliminar reunión?')) return; const {error}=await supabaseClient.from('reuniones').delete().eq('id',id); if(error) return alert(error.message); location.href='reuniones.html';}
 cargar();
