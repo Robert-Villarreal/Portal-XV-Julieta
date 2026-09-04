@@ -80,7 +80,12 @@ textarea{min-height:120px}.campo{margin-bottom:16px}.row{display:grid;grid-templ
 const supabaseClient=window.supabase.createClient('https://gjdgrxjgtjnzvipfpsvw.supabase.co','sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M');
 const id=new URLSearchParams(location.search).get('id');
 let actual=null;
-async function cargar(){const {data}=await supabaseClient.from('reuniones').select('*').eq('id',id).single(); if(!data)return; actual=data; for(const k in data){const e=document.getElementById(k); if(e){ if(e.type==='checkbox') e.checked=data[k]; else e.value=data[k]??''; }}}
+async function cargar(){const {data}=await supabaseClient.from('reuniones').select('*').eq('id',id).single(); if(!data)return; actual=data; for(const k in data){const e=document.getElementById(k); if(e){ if(e.type==='checkbox') e.checked=data[k]; else e.value=data[k]??''; }
+                                                                                                                                                                } 
+   document.getElementById("moneda").value =
+    data.moneda || "ARS"; 
+                        } 
+                        
 async function guardar(){
 
     const datos={
