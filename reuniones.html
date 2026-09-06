@@ -106,7 +106,11 @@ function fechaHoraBonita(fechaHora){
 +
 '<p>Prioridad: ' + (r.prioridad || '-') + '</p>'
 +
-'<p>Cotización: $' + (r.cotizacion || 0) + '</p>'
+'<p>'Cotización: ' +
+(r.moneda || 'ARS') +
+' ' +
+Number(r.cotizacion || 0)
+.toLocaleString('es-AR')+ '</p>'
 +
 '<div class="meta">Click para abrir</div>';
                                        g.appendChild(a);});}cargar();
