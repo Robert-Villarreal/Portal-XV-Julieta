@@ -431,6 +431,24 @@ window.supabase.createClient(
 'sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M'
 );
 
+const objetivos = {
+
+    "Vestido": 700000,
+
+    "Foto y Video": 2500000,
+
+    "Maquillaje y Peinado": 250000,
+
+    "Salón / Ambientación": 16672000,
+
+    "Catering y Bebidas": 845000,
+
+    "Shows / Cotillón": 1810000,
+
+    "Otros": 0
+
+};
+
 document
 .getElementById("filtroCategoria")
 .addEventListener(
@@ -481,13 +499,12 @@ async function cargar(){
         );
     }
 
-    let totalARS = 0;
-    let totalUSD = 0;
+    const tabla =
+    document.getElementById(
+        "tablaCotizaciones"
+    );
 
-    const grid =
-    document.getElementById("grid");
-
-    grid.innerHTML = "";
+    tabla.innerHTML = "";
 
     registros.forEach(r => {
 
@@ -502,194 +519,104 @@ async function cargar(){
         ? importe * tc
         : importe;
 
-        if(moneda === "USD"){
+        const objetivo =
+        objetivos[r.categoria] || 0;
 
-            totalUSD += importe;
+        const desvio =
+        equivalente - objetivo;
 
-        }else{
+        const fila =
+        document.createElement("tr");
 
-            totalARS += importe;
-        }
+        fila.innerHTML =
 
-      const objetivo =
-objetivos[r.categoria] || 0;
-
-const desvio =
-equivalente - objetivo;
-
-const fila =
-document.createElement("tr");
-
-fila.innerHTML =
-
-'<td>' + r.categoria + '</td>'
-
-+
-
-'<td>' + r.proveedor + '</td>'
-
-+
-
-'<td>' + moneda + '</td>'
-
-+
-
-'<td>'
-+ importe.toLocaleString("es-AR")
-+ '</td>'
-
-+
-
-'<td>$ '
-+ equivalente.toLocaleString("es-AR")
-+ '</td>'
-
-+
-
-'<td>$ '
-+ objetivo.toLocaleString("es-AR")
-+ '</td>'
-
-+
-
-'<td class="' +
-(desvio > 0
-? 'desvio-positivo'
-: 'desvio-cero')
-+ '">'
-
-+
-
-(desvio > 0 ? '+' : '')
-
-+
-
-'$ '
-+ desvio.toLocaleString("es-AR")
-
-+
-
-'</td>'
-
-+
-
-'<td class="' +
-(r.elegido
-? 'estado-ok'
-: 'estado-pendiente')
-+ '">'
-
-+
-
-(r.elegido
-? 'Seleccionado'
-: 'Pendiente')
-
-+
-
-'</td>';
-
-document
-.getElementById("tablaCotizaciones")
-.appendChild(fila);
-
-        card.innerHTML =
-
-        (r.elegido
-            ? '<div class="badge">⭐ PROVEEDOR SELECCIONADO</div>'
-            : '')
+        '<td>' +
+        (r.categoria || '-') +
+        '</td>'
 
         +
 
-        '<h2>' +
+        '<td>' +
         (r.proveedor || '-') +
-        '</h2>'
+        '</td>'
 
         +
 
-        '<div>'
-        + (r.categoria || '')
-        + '</div>'
+        '<td>' +
+        moneda +
+        '</td>'
 
         +
 
-        '<div class="monto">'
-        + moneda + ' '
-        + importe.toLocaleString('es-AR')
-        + '</div>'
+        '<td>' +
+        importe.toLocaleString("es-AR") +
+        '</td>'
 
         +
 
-        '<div class="small">'
-        + 'Equivalente ARS: $ '
-        + equivalente.toLocaleString('es-AR')
-        + '</div>';
+        '<td>$ ' +
+        equivalente.toLocaleString("es-AR") +
+        '</td>'
 
-        grid.appendChild(card);
+        +
+
+        '<td>$ ' +
+        objetivo.toLocaleString("es-AR") +
+        '</td>'
+
+        +
+
+        '<td class="' +
+        (
+            desvio > 0
+            ? 'desvio-positivo'
+            : 'desvio-cero'
+        ) +
+        '">'
+
+        +
+
+        (desvio > 0 ? '+' : '')
+
+        +
+
+        '$ ' +
+        desvio.toLocaleString("es-AR")
+
+        +
+
+        '</td>'
+
+        +
+
+        '<td class="' +
+        (
+            r.elegido
+            ? 'estado-ok'
+            : 'estado-pendiente'
+        ) +
+        '">'
+
+        +
+
+        (
+            r.elegido
+            ? 'Seleccionado'
+            : 'Pendiente'
+        )
+
+        +
+
+        '</td>';
+
+        tabla.appendChild(fila);
 
     });
-
-    document
-    .getElementById("ars")
-    .innerText =
-    '$ ' +
-    totalARS.toLocaleString('es-AR');
-
-    document
-    .getElementById("usd")
-    .innerText =
-    'USD ' +
-    totalUSD.toLocaleString('es-AR');
-const comprometido =
-totalARS +
-(totalUSD * tc);
-
-const pendiente =
-presupuestoObjetivo -
-comprometido;
-
-document
-.getElementById("objetivo")
-.innerText =
-'$ ' +
-presupuestoObjetivo.toLocaleString('es-AR');
-
-document
-.getElementById("pendiente")
-.innerText =
-'$ ' +
-pendiente.toLocaleString('es-AR');
-    document
-    .getElementById("equiv")
-    .innerText =
-    '$ ' +
-    (
-        totalARS +
-        (totalUSD * tc)
-    ).toLocaleString('es-AR');
 
 }
 
 cargar();
-const presupuestoObjetivo = 24997000;
-const objetivos = {
 
-    "Vestido": 700000,
-
-    "Foto y Video": 2500000,
-
-    "Maquillaje y Peinado": 250000,
-
-    "Salón / Ambientación": 16672000,
-
-    "Catering y Bebidas": 845000,
-
-    "Shows / Cotillón": 1810000,
-
-    "Otros": 0
-
-};
-    
 </script>
 
 </body>
