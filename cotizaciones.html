@@ -233,7 +233,10 @@ select{
 
 </style>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+    
+</script>
+    
 </head>
 
 <body>
@@ -386,25 +389,161 @@ select{
 
 <script>
 
-const tc = 1420;
+const supabaseClient =
+window.supabase.createClient(
+'https://gjdgrxjgtjnzvipfpsvw.supabase.co',
+'sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M'
+);
 
-const totalARS = 850000;
+document
+.getElementById("filtroCategoria")
+.addEventListener(
+    "change",
+    cargar
+);
 
-const totalUSD = 1500;
+document
+.getElementById("tc")
+.addEventListener(
+    "input",
+    cargar
+);
 
-document.getElementById("ars")
-.innerText =
-"$ " + totalARS.toLocaleString("es-AR");
+async function cargar(){
 
-document.getElementById("usd")
-.innerText =
-"USD " + totalUSD.toLocaleString("es-AR");
+    const tc =
+    Number(
+        document.getElementById("tc").value
+    ) || 1;
 
-document.getElementById("equiv")
-.innerText =
-"$ " +
-(totalARS + totalUSD * tc)
-.toLocaleString("es-AR");
+    const filtro =
+    document.getElementById(
+        "filtroCategoria"
+    ).value;
+
+    const {data,error} =
+    await supabaseClient
+    .from("reuniones")
+    .select("*");
+
+    if(error){
+
+        alert(error.message);
+        return;
+    }
+
+    let registros =
+    data.filter(
+        r => Number(r.cotizacion || 0) > 0
+    );
+
+    if(filtro !== "Todas"){
+
+        registros =
+        registros.filter(
+            r => r.categoria === filtro
+        );
+    }
+
+    let totalARS = 0;
+    let totalUSD = 0;
+
+    const grid =
+    document.getElementById("grid");
+
+    grid.innerHTML = "";
+
+    registros.forEach(r => {
+
+        const moneda =
+        r.moneda || "ARS";
+
+        const importe =
+        Number(r.cotizacion || 0);
+
+        const equivalente =
+        moneda === "USD"
+        ? importe * tc
+        : importe;
+
+        if(moneda === "USD"){
+
+            totalUSD += importe;
+
+        }else{
+
+            totalARS += importe;
+        }
+
+        const card =
+        document.createElement("div");
+
+        card.className =
+        "card" +
+        (r.elegido
+            ? " selected"
+            : "");
+
+        card.innerHTML =
+
+        (r.elegido
+            ? '<div class="badge">⭐ PROVEEDOR SELECCIONADO</div>'
+            : '')
+
+        +
+
+        '<h2>' +
+        (r.proveedor || '-') +
+        '</h2>'
+
+        +
+
+        '<div>'
+        + (r.categoria || '')
+        + '</div>'
+
+        +
+
+        '<div class="monto">'
+        + moneda + ' '
+        + importe.toLocaleString('es-AR')
+        + '</div>'
+
+        +
+
+        '<div class="small">'
+        + 'Equivalente ARS: $ '
+        + equivalente.toLocaleString('es-AR')
+        + '</div>';
+
+        grid.appendChild(card);
+
+    });
+
+    document
+    .getElementById("ars")
+    .innerText =
+    '$ ' +
+    totalARS.toLocaleString('es-AR');
+
+    document
+    .getElementById("usd")
+    .innerText =
+    'USD ' +
+    totalUSD.toLocaleString('es-AR');
+
+    document
+    .getElementById("equiv")
+    .innerText =
+    '$ ' +
+    (
+        totalARS +
+        (totalUSD * tc)
+    ).toLocaleString('es-AR');
+
+}
+
+cargar();
 
 </script>
 
