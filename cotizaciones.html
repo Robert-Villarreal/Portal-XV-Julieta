@@ -245,13 +245,13 @@ select{
 
     <div class="top">
 
-        <a
-           href="mi-look-v2.html"
-           class="btn">
+       <a
+   href="gestion-xv.html"
+   class="btn">
 
-           ← Volver a Mi Look
+   ← Volver a Gestión XV
 
-        </a>
+</a>
 
     </div>
 
@@ -347,6 +347,34 @@ select{
                 Equivalente Total ARS
             </div>
 
+            <div class="kpi">
+
+    <div id="objetivo" class="kpi-num">
+
+        $ 0
+
+    </div>
+
+    <div>
+        Presupuesto Objetivo
+    </div>
+
+</div>
+
+<div class="kpi">
+
+    <div id="pendiente" class="kpi-num">
+
+        $ 0
+
+    </div>
+
+    <div>
+        Pendiente de Definir
+    </div>
+
+</div>
+            
         </div>
 
     </div>
@@ -531,7 +559,25 @@ async function cargar(){
     .innerText =
     'USD ' +
     totalUSD.toLocaleString('es-AR');
+const comprometido =
+totalARS +
+(totalUSD * tc);
 
+const pendiente =
+presupuestoObjetivo -
+comprometido;
+
+document
+.getElementById("objetivo")
+.innerText =
+'$ ' +
+presupuestoObjetivo.toLocaleString('es-AR');
+
+document
+.getElementById("pendiente")
+.innerText =
+'$ ' +
+pendiente.toLocaleString('es-AR');
     document
     .getElementById("equiv")
     .innerText =
@@ -544,7 +590,7 @@ async function cargar(){
 }
 
 cargar();
-
+const presupuestoObjetivo = 24997000;
 </script>
 
 </body>
