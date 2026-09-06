@@ -217,7 +217,58 @@ select{
 
     margin-top:10px;
 }
+.tabla-cotizaciones{
 
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+.tabla-cotizaciones th{
+
+    text-align:left;
+
+    padding:14px;
+
+    border-bottom:2px solid #EEE;
+
+    color:#666;
+}
+
+.tabla-cotizaciones td{
+
+    padding:14px;
+
+    border-bottom:1px solid #F0F0F0;
+}
+
+.estado-ok{
+
+    color:#2E7D32;
+
+    font-weight:700;
+}
+
+.estado-pendiente{
+
+    color:#B8860B;
+
+    font-weight:700;
+}
+
+.desvio-positivo{
+
+    color:#C62828;
+
+    font-weight:700;
+}
+
+.desvio-cero{
+
+    color:#2E7D32;
+
+    font-weight:700;
+}
 @media(max-width:768px){
 
     h1{
@@ -305,80 +356,6 @@ select{
 
     </div>
 
-    <div class="resumen">
-
-        <div class="kpi">
-
-            <div id="ars" class="kpi-num">
-
-                $ 0
-
-            </div>
-
-            <div>
-                Total ARS
-            </div>
-
-        </div>
-
-        <div class="kpi">
-
-            <div id="usd" class="kpi-num">
-
-                USD 0
-
-            </div>
-
-            <div>
-                Total USD
-            </div>
-
-        </div>
-
-        <div class="kpi">
-
-            <div id="equiv" class="kpi-num">
-
-                $ 0
-
-            </div>
-
-            <div>
-                Equivalente Total ARS
-            </div>
-
-            <div class="kpi">
-
-    <div id="objetivo" class="kpi-num">
-
-        $ 0
-
-    </div>
-
-    <div>
-        Presupuesto Objetivo
-    </div>
-
-</div>
-
-<div class="kpi">
-
-    <div id="pendiente" class="kpi-num">
-
-        $ 0
-
-    </div>
-
-    <div>
-        Pendiente de Definir
-    </div>
-
-</div>
-            
-        </div>
-
-    </div>
-
     <div class="panel">
 
     <div class="form-grid">
@@ -405,6 +382,37 @@ select{
         </div>
 
     </div>
+
+</div>
+
+<div class="panel">
+
+    <table class="tabla-cotizaciones">
+
+        <thead>
+
+            <tr>
+
+                <th>Categoría</th>
+                <th>Proveedor</th>
+                <th>Moneda</th>
+                <th>Cotización</th>
+                <th>Equiv. ARS</th>
+                <th>Objetivo</th>
+                <th>Desvío</th>
+                <th>Estado</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="tablaCotizaciones">
+
+        </tbody>
+
+    </table>
+
+</div>
 
 </div>
 
@@ -503,14 +511,87 @@ async function cargar(){
             totalARS += importe;
         }
 
-        const card =
-        document.createElement("div");
+      const objetivo =
+objetivos[r.categoria] || 0;
 
-        card.className =
-        "card" +
-        (r.elegido
-            ? " selected"
-            : "");
+const desvio =
+equivalente - objetivo;
+
+const fila =
+document.createElement("tr");
+
+fila.innerHTML =
+
+'<td>' + r.categoria + '</td>'
+
++
+
+'<td>' + r.proveedor + '</td>'
+
++
+
+'<td>' + moneda + '</td>'
+
++
+
+'<td>'
++ importe.toLocaleString("es-AR")
++ '</td>'
+
++
+
+'<td>$ '
++ equivalente.toLocaleString("es-AR")
++ '</td>'
+
++
+
+'<td>$ '
++ objetivo.toLocaleString("es-AR")
++ '</td>'
+
++
+
+'<td class="' +
+(desvio > 0
+? 'desvio-positivo'
+: 'desvio-cero')
++ '">'
+
++
+
+(desvio > 0 ? '+' : '')
+
++
+
+'$ '
++ desvio.toLocaleString("es-AR")
+
++
+
+'</td>'
+
++
+
+'<td class="' +
+(r.elegido
+? 'estado-ok'
+: 'estado-pendiente')
++ '">'
+
++
+
+(r.elegido
+? 'Seleccionado'
+: 'Pendiente')
+
++
+
+'</td>';
+
+document
+.getElementById("tablaCotizaciones")
+.appendChild(fila);
 
         card.innerHTML =
 
@@ -591,6 +672,24 @@ pendiente.toLocaleString('es-AR');
 
 cargar();
 const presupuestoObjetivo = 24997000;
+const objetivos = {
+
+    "Vestido": 700000,
+
+    "Foto y Video": 2500000,
+
+    "Maquillaje y Peinado": 250000,
+
+    "Salón / Ambientación": 16672000,
+
+    "Catering y Bebidas": 845000,
+
+    "Shows / Cotillón": 1810000,
+
+    "Otros": 0
+
+};
+    
 </script>
 
 </body>
