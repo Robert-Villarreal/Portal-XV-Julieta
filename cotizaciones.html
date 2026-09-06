@@ -233,6 +233,7 @@ select{
 
 </style>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -347,55 +348,40 @@ select{
 
     </div>
 
-    <div class="grid" id="grid">
+    <div class="panel">
 
-        <div class="card selected">
+    <div class="form-grid">
 
-            <div class="badge">
-                PROVEEDOR SELECCIONADO
-            </div>
+        <div>
 
-            <h2>
-                Trianna
-            </h2>
+            <label>
+                Categoría
+            </label>
 
-            <div>
-                Vestido
-            </div>
+            <select id="filtroCategoria">
 
-            <div class="monto">
-                USD 1.500
-            </div>
+                <option>Todas</option>
+                <option>Vestido</option>
+                <option>Foto y Video</option>
+                <option>Maquillaje y Peinado</option>
+                <option>Salón / Ambientación</option>
+                <option>Catering y Bebidas</option>
+                <option>Shows / Cotillón</option>
+                <option>Otros</option>
 
-            <div class="small">
-                Equivalente ARS:
-                $ 2.130.000
-            </div>
-
-        </div>
-
-        <div class="card">
-
-            <h2>
-                Estudio A
-            </h2>
-
-            <div>
-                Foto y Video
-            </div>
-
-            <div class="monto">
-                $ 850.000
-            </div>
-
-            <div class="small">
-                Moneda ARS
-            </div>
+            </select>
 
         </div>
 
     </div>
 
+</div>
+
+<div
+    id="grid"
+    class="grid">
+
+</div>
 </div>
 
 <script>
