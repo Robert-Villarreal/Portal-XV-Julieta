@@ -30,7 +30,10 @@ body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#FA
 const s=window.supabase.createClient('https://gjdgrxjgtjnzvipfpsvw.supabase.co','sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M');
 let offset=0; const dias=['Dom','Lun','Mar','Mie','Jue','Vie','Sab'];
 function cls(c){if(c==='Vestido')return'vestido';if(c==='Foto y Video')return'foto';if(c==='Maquillaje y Peinado')return'maq';if(c==='Salón / Ambientación')return'salon';if(c==='Catering y Bebidas')return'catering';if(c==='Shows / Cotillón')return'show';return'otros';}
-async function cargar(){const r=await s.from('reuniones').select('*');const data=r.data||[];cant.textContent=data.length;sel.textContent=data.filter(x=>x.elegido).length;const now=new Date();now.setDate(now.getDate()-now.getDay()+1+offset);tituloSemana.textContent='Semana de '+now.toLocaleDateString('es-AR');week.innerHTML='';for(let i=0;i<7;i++){const d=new Date(now);d.setDate(now.getDate()+i);const iso=d.toISOString().split('T')[0];let html='<div class="day"><h3>'+dias[d.getDay()]+' '+d.getDate()+'</h3>';data.filter(x=>x.fecha===iso).forEach(e=>{html+='<a class="event '+cls(e.categoria)+(e.elegido?' star':'')+'" href="reunion.html?id='+e.id+'">'+(e.elegido?'⭐ ':'')+'<strong>'+e.proveedor+'</strong><br>'+e.hora+'<br>'+e.categoria+'</a>';});html+='</div>';week.innerHTML+=html;}}
+async function cargar(){const r=await s.from('reuniones').select('*');const data=r.data||[];cant.textContent=data.length;sel.textContent=data.filter(x=>x.elegido).length;const now=new Date();now.setDate(now.getDate()-now.getDay()+1+offset);tituloSemana.textContent='Semana de '+now.toLocaleDateString('es-AR');week.innerHTML='';for(let i=0;i<7;i++){const d=new Date(now);d.setDate(now.getDate()+i);const iso =
+d.getFullYear() + '-' +
+String(d.getMonth() + 1).padStart(2,'0') + '-' +
+String(d.getDate()).padStart(2,'0');let html='<div class="day"><h3>'+dias[d.getDay()]+' '+d.getDate()+'</h3>';data.filter(x=>x.fecha===iso).forEach(e=>{html+='<a class="event '+cls(e.categoria)+(e.elegido?' star':'')+'" href="reunion.html?id='+e.id+'">'+(e.elegido?'⭐ ':'')+'<strong>'+e.proveedor+'</strong><br>'+e.hora+'<br>'+e.categoria+'</a>';});html+='</div>';week.innerHTML+=html;}}
 function cambiar(v){offset+=v;cargar();}
 cargar();
 </script></body></html>
