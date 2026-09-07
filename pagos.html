@@ -413,22 +413,22 @@ async function cargarPagos(){
 
     data.forEach(p=>{
 
-        if(p.moneda==="USD"){
+        if(p.moneda === "USD"){
 
-            usd += Number(p.importe);
+    usd += Number(p.importe);
 
-        }
-        if(
+}else{
+
+    ars += Number(p.importe);
+}
+
+if(
     p.proveedor === "Salon Sanfiz"
 ){
 
     pagadoSalon +=
     Number(p.importe || 0);
 }
-        else{
-
-            ars += Number(p.importe);
-        }
 
         const tr =
         document.createElement("tr");
@@ -482,10 +482,14 @@ p.id+
     "USD " +
     usd.toLocaleString("es-AR");
 
-    document
-    .getElementById("equivalente")
-    .innerText =
-        const comprometidoSalon =
+   document
+.getElementById("equivalente")
+.innerText =
+"$ " +
+(ars + usd * tc)
+.toLocaleString("es-AR");
+
+const comprometidoSalon =
 16672000;
 
 const saldoSalon =
