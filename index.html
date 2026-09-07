@@ -408,7 +408,9 @@ box-shadow:
 
 }
 </style>
-
+    
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
 </head>
 
 <body>
@@ -590,14 +592,108 @@ fechaEvento - hoy;
 
 const dias =
 Math.ceil(
-diferencia /
-(1000*60*60*24)
+    diferencia /
+    (1000*60*60*24)
 );
 
-document.getElementById(
-"dias"
-).innerHTML = dias;
+document
+.getElementById("dias")
+.innerHTML = dias;
+
+const supabaseClient =
+window.supabase.createClient(
+'https://gjdgrxjgtjnzvipfpsvw.supabase.co',
+'sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M'
+);
+
+async function cargarProximaReunion(){
+
+    const {data,error} =
+    await supabaseClient
+    .from('reuniones')
+    .select('*');
+
+    if(error || !data?.length)
+        return;
+
+    const ahora = new Date();
+
+    const futuras =
+    data.filter(r => {
+
+        const fechaHora =
+        new Date(
+            r.fecha + 'T' + r.hora
+        );
+
+        return fechaHora > ahora;
+
+    });
+
+    if(!futuras.length){
+
+        document.getElementById(
+            "proximaProveedor"
+        ).innerText =
+        "Sin reuniones futuras";
+
+        document.getElementById(
+            "proximaFecha"
+        ).innerText =
+        "";
+
+        return;
+    }
+
+    futuras.sort((a,b)=>{
+
+        const fa =
+        new Date(a.fecha+'T'+a.hora);
+
+        const fb =
+        new Date(b.fecha+'T'+b.hora);
+
+        return fa - fb;
+
+    });
+
+    const reunion =
+    futuras[0];
+
+    const fecha =
+    new Date(
+        reunion.fecha +
+        "T12:00:00"
+    );
+
+    const fechaTexto =
+    fecha.toLocaleDateString(
+        "es-AR",
+        {
+            day:"2-digit",
+            month:"long",
+            year:"numeric"
+        }
+    );
+
+    document.getElementById(
+        "proximaProveedor"
+    ).innerText =
+    reunion.proveedor;
+
+    document.getElementById(
+        "proximaFecha"
+    ).innerText =
+    fechaTexto +
+    " · " +
+    reunion.hora +
+    " hs";
+
+}
+
+cargarProximaReunion();
 
 </script>
+
 </body>
 </html>
