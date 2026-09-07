@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Presupuesto Comprometido · XV Julieta</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:
+    linear-gradient(
+        180deg,
+        #FAF9F7 0%,
+        #F5DCE8 45%,
+        #DDECFB 100%
+    );
+    color:#4A4A4A;
+}
+
+.page{
+    max-width:1400px;
+    margin:auto;
+    padding:50px 20px 100px;
+}
+
+.btn{
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:30px;
+    background:white;
+    color:#4A4A4A;
+    border:1px solid #DDD;
+}
+
+h1{
+    font-size:58px;
+    margin-bottom:10px;
+}
+
+.intro{
+    color:#777;
+    margin-bottom:40px;
+}
+
+.panel{
+    background:white;
+    border-radius:28px;
+    padding:30px;
+    margin-bottom:25px;
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.05);
+}
+
+.kpis{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.kpi{
+    background:white;
+    border-radius:28px;
+    padding:25px;
+    text-align:center;
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.05);
+}
+
+.kpi-num{
+    font-size:36px;
+    font-weight:bold;
+    color:#7A1520;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    text-align:left;
+    padding:14px;
+    border-bottom:2px solid #ECECEC;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #F0F0F0;
+}
+
+.estado-ok{
+    color:#2E7D32;
+    font-weight:bold;
+}
+
+.estado-pend{
+    color:#B8860B;
+    font-weight:bold;
+}
+
+.desvio-neg{
+    color:#2E7D32;
+    font-weight:bold;
+}
+
+.desvio-pos{
+    color:#C62828;
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+<a
+href="gestion-xv.html"
+class="btn">
+
+← Volver a Gestión XV
+
+</a>
+
+<h1>
+Presupuesto Comprometido
+</h1>
+
+<div class="intro">
+
+Comparación entre presupuesto objetivo,
+proveedores seleccionados y saldo pendiente.
+
+</div>
+
+<div class="kpis">
+
+<div class="kpi">
+
+<div id="objetivoTotal" class="kpi-num">
+$ 24.997.000
+</div>
+
+<div>
+Presupuesto Objetivo
+</div>
+
+</div>
+
+<div class="kpi">
+
+<div id="comprometidoTotal" class="kpi-num">
+$ 0
+</div>
+
+<div>
+Comprometido
+</div>
+
+</div>
+
+<div class="kpi">
+
+<div id="saldoTotal" class="kpi-num">
+$ 0
+</div>
+
+<div>
+Saldo ARS
+</div>
+
+</div>
+
+<div class="kpi">
+
+<div id="saldoUsd" class="kpi-num">
+USD 0
+</div>
+
+<div>
+Saldo Ref USD
+</div>
+
+</div>
+
+</div>
+
+<div class="panel">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Categoría</th>
+<th>Proveedor</th>
+<th>Objetivo</th>
+<th>Comprometido</th>
+<th>Saldo ARS</th>
+<th>Saldo Ref USD</th>
+<th>Desvío</th>
+<th>Estado</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tablaComprometido">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+const supabaseClient =
+window.supabase.createClient(
+'https://gjdgrxjgtjnzvipfpsvw.supabase.co',
+'sb_publishable_cyRW2xlQP_PdOSWJG9HkPg_jhJck75M'
+);
+
+const tc = 1420;
+
+const objetivos = {
+
+    "Vestido":700000,
+
+    "Foto y Video":2500000,
+
+    "Maquillaje y Peinado":250000,
+
+    "Salón / Ambientación":16672000,
+
+    "Catering y Bebidas":845000,
+
+    "Shows / Cotillón":1810000,
+
+    "Otros":0
+
+};
+
+async function cargar(){
+
+    const {data,error} =
+    await supabaseClient
+    .from("reuniones")
+    .select("*");
+
+    if(error){
+
+        alert(error.message);
+        return;
+    }
+
+    const tabla =
+    document.getElementById(
+        "tablaComprometido"
+    );
+
+    tabla.innerHTML = "";
+
+    let comprometidoTotal = 0;
+
+    const categorias =
+    Object.keys(objetivos);
+
+    categorias.forEach(cat => {
+
+        const objetivo =
+        objetivos[cat];
+
+        const seleccionado =
+        data.find(
+            r =>
+            r.categoria === cat &&
+            r.elegido === true
+        );
+
+        let proveedor =
+        "Pendiente de definir";
+
+        let comprometido = 0;
+
+        let estado =
+        "Pendiente";
+
+        if(seleccionado){
+
+            proveedor =
+            seleccionado.proveedor;
+
+            comprometido =
+            seleccionado.moneda === "USD"
+            ? Number(seleccionado.cotizacion) * tc
+            : Number(seleccionado.cotizacion);
+
+            estado =
+            "Seleccionado";
+
+            comprometidoTotal +=
+            comprometido;
+        }
+
+        const saldo =
+        seleccionado
+        ? comprometido
+        : objetivo;
+
+        const saldoRefUsd =
+        saldo / tc;
+
+        const desvio =
+        comprometido - objetivo;
+
+        const tr =
+        document.createElement("tr");
+
+        tr.innerHTML =
+
+        '<td>' + cat + '</td>' +
+
+        '<td>' + proveedor + '</td>' +
+
+        '<td>$ ' +
+        objetivo.toLocaleString('es-AR') +
+        '</td>' +
+
+        '<td>$ ' +
+        comprometido.toLocaleString('es-AR') +
+        '</td>' +
+
+        '<td>$ ' +
+        saldo.toLocaleString('es-AR') +
+        '</td>' +
+
+        '<td>USD ' +
+        saldoRefUsd.toFixed(0) +
+        '</td>' +
+
+        '<td class="' +
+        (desvio > 0
+            ? 'desvio-pos'
+            : 'desvio-neg')
+        + '">' +
+
+        '$ ' +
+        desvio.toLocaleString('es-AR')
+
+        + '</td>' +
+
+        '<td class="' +
+        (seleccionado
+            ? 'estado-ok'
+            : 'estado-pend')
+        + '">' +
+
+        estado +
+
+        '</td>';
+
+        tabla.appendChild(tr);
+
+    });
+
+    const saldoTotal =
+    24997000 - comprometidoTotal;
+
+    document
+    .getElementById("comprometidoTotal")
+    .innerText =
+    "$ " +
+    comprometidoTotal.toLocaleString("es-AR");
+
+    document
+    .getElementById("saldoTotal")
+    .innerText =
+    "$ " +
+    saldoTotal.toLocaleString("es-AR");
+
+    document
+    .getElementById("saldoUsd")
+    .innerText =
+    "USD " +
+    (saldoTotal / tc).toFixed(0);
+
+}
+
+cargar();
+
+</script>
+
+</body>
+
+</html>
