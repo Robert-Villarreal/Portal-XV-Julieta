@@ -489,18 +489,20 @@ Mi Vestido
             ESTADO ACTUAL
         </div>
 
-        <div class="proveedor">
-            Trianna
-        </div>
+        <div
+    id="estadoVestido"
+    class="proveedor">
+
+    Cargando...
+
+</div>
 
         <p>
-            <div class="mini-status">
+            <div
+    id="estadoVestidoDetalle"
+    class="mini-status">
 
-2 ideas guardadas
-
-·
-
-2 reuniones programadas
+    Cargando...
 
 </div>
         </p>
@@ -690,8 +692,46 @@ async function cargarProximaReunion(){
     " hs";
 
 }
+    async function cargarEstadoVestido(){
+
+    const {data:ideas} =
+    await supabaseClient
+    .from('ideas_vestido')
+    .select('*');
+
+    const {data:reuniones} =
+    await supabaseClient
+    .from('reuniones')
+    .select('*')
+    .eq('categoria','Vestido');
+
+    const proveedorElegido =
+    reuniones.find(
+        r => r.elegido === true
+    );
+
+    document.getElementById(
+        "estadoVestido"
+    ).innerText =
+    proveedorElegido
+    ? proveedorElegido.proveedor
+    : "Pendiente de definición";
+
+    document.getElementById(
+        "estadoVestidoDetalle"
+    ).innerText =
+    (ideas?.length || 0)
+    +
+    " ideas guardadas · "
+    +
+    (reuniones?.length || 0)
+    +
+    " reuniones programadas";
+
+}
 
 cargarProximaReunion();
+cargarEstadoVestido();
 
 </script>
 
